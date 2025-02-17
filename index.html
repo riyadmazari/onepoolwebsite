@@ -64,8 +64,15 @@
   }
 
   .header {
-    color : #f9f6f1;
+    position: absolute; /* Ensures it moves with parent */
+    top: 50%; /* Moves it to the center */
+    left: 50%; 
+    transform: translate(-50%, -50%); /* Centers it */
+    width: 100%; 
+    text-align: center;
+    color: #f9f6f1;
   }
+  
 
   .logo-container {
     width: 10em !important;
@@ -189,6 +196,13 @@
   margin-top: 0px;
 }
 
+.section.no-overlflow {
+  overflow: hidden;
+  height: 100vh;
+}
+
+
+
 
 @media screen and (max-width: 991px) {
   .email-div {
@@ -270,11 +284,19 @@ a {
       </div>
     </div>
   </div>  
-<div data-w-id="d8aa8a2a-ce70-5c57-8b87-7d2de1d5a667" style="-webkit-transform:translate3d(0, 0, 0) scale3d(1.3, 1.3, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1.3, 1.3, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1.3, 1.3, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1.3, 1.3, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="atf-bg">
-  <img src="images/landingpage.jpeg" loading="lazy" sizes="100vw" srcset="images/landingpage.jpeg 500w, images/landingpage.jpeg 800w, images/landingpage.jpeg 1080w, images/landingpage.jpeg 1600w, images/landingpage.jpeg 2000w, images/landingpage.jpeg 2600w, images/landingpage.jpeg 3840w" alt="" class="image desktop-img">
-  <img src="images/landingpage.jpeg" loading="lazy" sizes="100vw" srcset="images/landingpage.jpeg 500w, images/landingpage.jpeg 720w" alt="" class="image phone-img">
-</div>
-<div class="container full-vh atf-container">
+  <div data-w-id="d8aa8a2a-ce70-5c57-8b87-7d2de1d5a667" 
+    style="-webkit-transform:translate3d(0, 0, 0) scale3d(1.3, 1.3, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+         -moz-transform:translate3d(0, 0, 0) scale3d(1.3, 1.3, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+         -ms-transform:translate3d(0, 0, 0) scale3d(1.3, 1.3, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+         transform:translate3d(0, 0, 0) scale3d(1.3, 1.3, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);" 
+    class="atf-bg">
+
+    <video autoplay muted loop playsinline class="video-bg">
+      <source src="images/hero-background.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+  </div>
   <header class="header">
     <div class="h1-holder">
       <div class="h1-block-1" style="opacity:0;transform:none">
@@ -1048,6 +1070,8 @@ a {
 
 
 <script>
+
+  
 
 $('.process-blocks').on('mouseenter mouseleave', function() {
   $(this).toggleClass('hover-block');
