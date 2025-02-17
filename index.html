@@ -64,14 +64,15 @@
   }
 
   .header {
-    position: absolute; /* Ensures it moves with parent */
-    top: 50%; /* Moves it to the center */
-    left: 50%; 
-    transform: translate(-50%, -50%); /* Centers it */
-    width: 100%; 
+    position: absolute; /* Stays within .section.no-overflow */
+    bottom: 10%; /* Moves it near the bottom */
+    left: 50%;
+    transform: translateX(-50%); /* Center it horizontally */
+    width: 100%;
     text-align: center;
     color: #f9f6f1;
   }
+  
   
 
   .logo-container {
@@ -247,7 +248,7 @@ a {
     <div class="container">
       <div class="nav-block">
         <div class="logo-container atf-logo abs-left">
-          <img src="images/OnePoolInvert.png" loading="lazy" sizes="(max-width: 479px) 38vw, (max-width: 991px) 18vw, 10vw" srcset="images/OnePoolInvert.png 500w, images/OnePoolInvert.png 766w" alt="" class="image">
+          <img src="images/OnePool.png" loading="lazy" sizes="(max-width: 479px) 38vw, (max-width: 991px) 18vw, 10vw" srcset="images/OnePool.png 500w, images/OnePool.png 766w" alt="" class="image">
         </div>
         <div class="nav-grid">
           <a href="#about-sect" class="nav-links w-inline-block">
