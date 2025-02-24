@@ -1,0 +1,119 @@
+.Frame_1 {
+	transform-box: fill-box;
+	transform-origin: 50% 50%
+}
+.Discover_Card {
+	animation: 2s linear 0.96s 1 normal forwards running Discover_Card;
+	transform-box: fill-box;
+	transform-origin: 50% 50%
+}
+@keyframes Discover_Card {
+	0% {
+		transform: translateX(0px);
+	}
+	48% {
+		opacity: 1;
+	}
+	50% {
+		transform: translateY(0px) translateX(112px);
+	}
+	53% {
+		opacity: 0;
+	}
+	55% {
+		transform: translateY(11px);
+	}
+}
+.Mastercard_Logo {
+	animation: 2s linear 1s 1 normal forwards running Mastercard_Logo;
+	transform-box: fill-box;
+	transform-origin: 50% 50%
+}
+@keyframes Mastercard_Logo {
+	0% {
+		transform: translateX(0px);
+	}
+	50% {
+		transform: translateX(110px) translateY(0px);
+		opacity: 1;
+	}
+	54% {
+		opacity: 0;
+	}
+	55% {
+		transform: translateY(-8px);
+	}
+}
+.Apple_TV {
+	animation: 2s linear 0s 1 normal forwards running Apple_TV;
+	transform-box: fill-box;
+	transform-origin: 50% 50%
+}
+@keyframes Apple_TV {
+	0% {
+		transform: translateX(0px);
+		opacity: 1;
+	}
+	50% {
+		transform: translateX(110px) translateY(0px);
+		opacity: 1;
+	}
+	58% {
+		opacity: 1;
+	}
+	66% {
+		transform: translateY(-61px);
+	}
+	64.5% {
+		opacity: 0;
+	}
+}
+.Visa {
+	animation: 2s linear 0s 1 normal forwards running Visa;
+	transform-box: fill-box;
+	transform-origin: 50% 50%
+}
+@keyframes Visa {
+	0% {
+		transform: translateX(0px) translateY(0px);
+		opacity: 1;
+	}
+	50% {
+		transform: translateX(110px) translateY(0px);
+	}
+	66% {
+		transform: translateY(58px);
+	}
+	57.5% {
+		opacity: 1;
+	}
+	64.5% {
+		opacity: 0;
+	}
+}
+.Ellipse_6 {
+	animation: 2s linear 1.3s 1 normal forwards running Ellipse_6;
+	transform-box: fill-box;
+	transform-origin: 50% 50%
+}
+@keyframes Ellipse_6 {
+	65% {
+		transform: translateX(0px);
+	}
+	100% {
+		transform: translateX(130.5px);
+	}
+}
+.Shopping_Cart {
+	animation: 2s linear 0s 1 normal forwards running Shopping_Cart;
+	transform-box: fill-box;
+	transform-origin: 50% 50%
+}
+@keyframes Shopping_Cart {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(-360deg);
+	}
+}

@@ -5,6 +5,9 @@
 <title>OnePool</title>
 <meta content="width=device-width, initial-scale=1" name="viewport">
 <link href="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/css/cocoon-app.webflow.5b802ab61.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="Frame_1.css">
+<!-- Alternative: Use OnePool0.jpeg directly -->
+<link rel="icon" type="image/jpeg" href="images/OnePoolO.jpeg">
 <style>
   @media (min-width:992px) {
     html.w-mod-js:not(.w-mod-ix) 
@@ -131,6 +134,20 @@
 	color: #F9F6F1;
 }
 
+.phone-video {
+  width: 80%;   /* Adjust based on your phone size */
+  height: auto; /* Maintains aspect ratio */
+  max-width: 100%;
+  max-height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Perfect centering */
+  object-fit: contain; /* Prevents cropping */
+  z-index: 2; /* Ensure it is above other elements */
+}
+
+
 .phone-inside, .sticky-content-blk, .numbered-content {
 	opacity: 0;
 }
@@ -144,7 +161,7 @@
 }
 
 .numbered-content.is-active {
-	opacity: 1;
+	opacity: 1 !important;
 }
 
 .phone-inside.in-1.is-active .move-grey-card-1, .phone-inside.in-1.is-active .move-grey-card-2 {
@@ -224,6 +241,235 @@
   color: var(--floral-white);
 }
 
+.logo-follow {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  width: 8em; /* Base container size */
+}
+
+.logo-follow img {
+  width: 100%;  /* Ensures images fill the container */
+  height: auto;
+  transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.primary-logo {
+  opacity: 1;
+  transform: scale(1);
+}
+
+  .secondary-logo {
+    opacity: 0;
+    transform: scale(0.8); /* Adjust to make the secondary logo smaller */
+    width: 50% !important; /* Reduce size */
+  }
+
+
+.scrolled .primary-logo {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.scrolled .secondary-logo {
+  opacity: 1;
+  transform: scale(1);
+}
+
+
+
+.paragraph {
+  font-size: 1.5em;
+}
+
+/* Popup Styles */
+.popup {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--floral-white);
+  padding: 25px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  width: 400px;
+  max-width: 90%; /* Ensures it adapts to smaller screens */
+  text-align: center;
+}
+
+.popup-content {
+  position: relative;
+}
+
+.popup input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid var(--white-smoke);
+  border-radius: 52em;
+  font-size: 16px;
+}
+
+.popup button {
+  background-color: var(--medium-sea-green);
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  font-size: 16px;
+  border-radius: 52em;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.popup button:hover {
+  background-color: #d84303;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--black);
+}
+
+.close:hover {
+  color: var(--medium-sea-green);
+}
+
+.button {
+  background-color: var(--medium-sea-green) !important;
+}
+
+.btn-atf {
+  background-color: var(--medium-sea-green) !important; /* Force uniform color */
+  color: white !important;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 52em;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  display: flex; /* Ensures inner content aligns */
+  justify-content: center;
+  align-items: center;
+  width: fit-content; /* Prevents unintended scaling */
+}
+
+.btn-atf button {
+  background-color: transparent !important; /* Removes any inner white box */
+  border: none;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+
+.btn-atf:hover {
+  background-color: #d84303; /* Slightly darker on hover */
+  transform: scale(1.05);
+}
+
+.btn-atf:active {
+  transform: scale(0.98);
+}
+
+
+
+/* Responsive Design - Adjust for smaller screens */
+@media screen and (max-width: 991px) {
+  .logo-follow {
+    width: 20% !important;
+    position: fixed;
+    top: 20px;  /* Same positioning */
+    left: 20px; /* Adjust if needed */
+    z-index: 1000;
+    transition: transform 0.3s ease-out;
+    cursor: pointer;
+  }
+
+  .secondary-logo {
+    opacity: 0;
+    transform: scale(0.8); /* Adjust to make the secondary logo smaller */
+    width: 50% !important; /* Reduce size */
+  }
+
+  .paragraph {
+    font-size: 2.02em;
+  }
+
+  .popup {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .popup h2 {
+    font-size: 30px;
+  }
+
+  .popup p {
+    font-size: 18px;
+  }
+
+  .popup input {
+    font-size: 16px;
+  }
+
+  .popup button {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .logo-follow {
+    width: 20% !important;
+    position: fixed;
+    top: 10px;  /* Same positioning */
+    left: 10px; /* Adjust if needed */
+    z-index: 1000;
+    transition: transform 0.3s ease-out;
+    cursor: pointer;
+  }
+
+  .paragraph {
+    font-size: 3.90em;
+  }
+  .popup {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .popup h2 {
+    font-size: 30px;
+  }
+
+  .popup p {
+    font-size: 16px;
+  }
+
+  .popup input {
+    font-size: 14px;
+  }
+
+  .popup button {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
 @media screen and (max-width: 991px) {
   .email-div {
     margin-top: 0px;
@@ -262,13 +508,16 @@ a {
 
 </style>
 </div>
+<div class="logo-follow">
+  <a href="#" id="logo-link">
+    <img src="images/OnePool.png" alt="OnePool Logo" class="logo-image primary-logo">
+    <img src="images/OnePoolrb.png" alt="OnePool Logo" class="logo-image secondary-logo">
+  </a>
+</div>
 <section class="section no-overlflow">
   <div style="opacity:0" class="navbar">
     <div class="container">
       <div class="nav-block">
-        <div class="logo-container atf-logo abs-left">
-          <img src="images/OnePool.png" loading="lazy" sizes="(max-width: 479px) 38vw, (max-width: 991px) 18vw, 10vw" srcset="images/OnePool.png 500w, images/OnePool.png 766w" alt="" class="image">
-        </div>
         <div class="nav-grid">
           <a href="#about-sect" class="nav-links w-inline-block">
             <div class="nav-text n1">
@@ -346,14 +595,11 @@ a {
         With <strong>OnePool</strong>, group payment no longer a hassle — automatically split at checkout.
       </p>
     </div>    
-    <div style="opacity:0" class="btn-atf">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSc2lzRPEv6siziDHnSOClVixUs6gFU-4uoinLH0hjkq6LvaVg/viewform?usp=dialog" class="button-effect-blue w-inline-block">
-        <div class="btn-text">
-          Help us know you better
-        </div>
-        <div class="color-btns"></div>
-      </a>
-    </div>
+    <div class="btn-atf">
+      <button onclick="document.getElementById('email-popup').style.display='block'">
+        Subscribe for Updates
+      </button>
+   </div>   
   </header>
 </div>
 </section>
@@ -426,6 +672,10 @@ a {
                 <div data-w-id="5f63b519-b174-3366-89eb-09cd8751b58a" data-is-ix2-target="1" class="lottie-phone" data-animation-type="lottie" data-src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64d48529bf066d2473f734eb_Phone%20Draw.json" data-loop="0" data-direction="1" data-autoplay="0" data-renderer="svg" data-default-duration="3.069736278036817" data-duration="0" data-ix2-initial-state="0"></div>
                 <div tr-scroll-toggle="list" class="hold-images">
                   <div class="phone-inside in-1">
+                    <video autoplay loop muted playsinline class="phone-video">
+                      <source src="frame.mp4" type="video/mp4">
+                      Your browser does not support the video tag.
+                    </video>
                     <!--
                     <div class="wip-container">
                       <div class="wip-text">WIP</div>
@@ -1071,8 +1321,182 @@ a {
 */
 </script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
+  
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      const logo = document.querySelector("#logo-link");
+  
+      if (logo) {
+          logo.addEventListener("click", function(event) {
+              event.preventDefault(); // Prevent default link behavior
+              window.scrollTo({
+                  top: 0,
+                  behavior: "smooth"
+              });
+          });
+      }
+  });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const firstSection = document.querySelector(".section.no-overlflow");
+    const primaryLogo = document.querySelector(".primary-logo");
+    const secondaryLogo = document.querySelector(".secondary-logo");
+
+    if (!firstSection || !primaryLogo || !secondaryLogo) return;
+
+    function checkScroll() {
+        if (window.scrollY > firstSection.clientHeight / 2) {
+            primaryLogo.style.opacity = "0";
+            primaryLogo.style.transform = "scale(0.8)";
+            secondaryLogo.style.opacity = "1";
+            secondaryLogo.style.transform = "scale(1)";
+        } else {
+            primaryLogo.style.opacity = "1";
+            primaryLogo.style.transform = "scale(1)";
+            secondaryLogo.style.opacity = "0";
+            secondaryLogo.style.transform = "scale(0.8)";
+        }
+    }
+
+    window.addEventListener("scroll", checkScroll);
+    checkScroll(); // Run once on page load
+});
 
 
+</script>
+<!-- Firebase (use the latest version) -->
+<!-- Firebase v9+ (Ensure these are placed before your script using Firebase) -->
+<script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore-compat.js"></script>
+
+
+<script>
+  // ✅ Ensure Firebase is loaded before initializing
+  document.addEventListener("DOMContentLoaded", async function () {
+    console.log("🔥 DOM fully loaded!");
+
+    // Ensure Firebase is loaded
+    if (typeof firebase === "undefined") {
+        console.error("❌ Firebase SDK not loaded. Check your script imports.");
+        return;
+    }
+
+    // ✅ Firebase Configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyA4GUJv-M4W5ZaY-5-6yGY6um_X1EBWEQg",
+        authDomain: "onepool-800e2.firebaseapp.com",
+        projectId: "onepool-800e2",
+        storageBucket: "onepool-800e2.appspot.com",
+        messagingSenderId: "370160885219",
+        appId: "1:370160885219:web:7a5c223281ab96c047d4d6",
+        measurementId: "G-QSTDV4QVZM"
+    };
+
+    // ✅ Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    console.log("✅ Firebase App Initialized:", app.name);
+
+    try {
+        // ✅ Initialize Firestore
+        const db = firebase.firestore();
+        console.log("✅ Firestore Initialized");
+
+        // Store `db` globally
+        window.db = db;
+
+        // ✅ Now, attach form event listener safely
+        setupForm(db);
+    } catch (error) {
+        console.error("❌ Error initializing Firestore:", error);
+    }
+});
+
+function setupForm(db) {
+    const emailForm = document.getElementById("email-form");
+    if (!emailForm) {
+        console.error("❌ Email form not found!");
+        return;
+    }
+
+    emailForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const emailInput = document.getElementById("email");
+
+        if (!emailInput) {
+            console.error("❌ Email input field not found!");
+            return;
+        }
+
+        const email = emailInput.value.trim();
+        if (!email) {
+            alert("⚠️ Please enter a valid email address.");
+            return;
+        }
+
+        try {
+            await db.collection("subscribers").add({
+                email: email,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            });
+
+            alert("✅ Thank you for subscribing!");
+            emailInput.value = ""; // Clear input
+            document.getElementById("email-popup").style.display = "none";
+        } catch (error) {
+            console.error("❌ Error adding document:", error);
+            alert("There was an error. Please try again.");
+        }
+    });
+}
+
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Get button and popup elements
+    const subscribeButton = document.querySelector(".btn-atf button");
+    const popup = document.getElementById("email-popup");
+    const closeBtn = document.querySelector(".popup .close");
+  
+    if (subscribeButton && popup && closeBtn) {
+      subscribeButton.addEventListener("click", function () {
+        popup.style.display = "block";
+      });
+  
+      closeBtn.addEventListener("click", function () {
+        popup.style.display = "none";
+      });
+  
+      // Close when clicking outside the popup
+      window.addEventListener("click", function (event) {
+        if (event.target === popup) {
+          popup.style.display = "none";
+        }
+      });
+    }
+  });
+  
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const targetElements = document.querySelectorAll(".h1-block-1, .h1-block-2, .h1-block-3");
+    
+    if (targetElements.length > 0) {
+        gsap.to(targetElements, {
+            opacity: 1,
+            transform: "none",
+            duration: 0.5,
+            stagger: 0.2
+        });
+    } else {
+        console.warn("⚠️ GSAP target elements not found! Check if they are in the DOM.");
+    }
+});
+
+</script>
 <script>
 
   
@@ -1190,5 +1614,20 @@ $('.play-vid-btn').on('click', function() {
 });
 
 </script>
+
+<div id="email-popup" class="popup" style="display: none;">
+  <div class="popup-content">
+    <span class="close" onclick="closePopup()">&times;</span>
+    <h2>Stay Updated!</h2>
+    <p>Enter your email to receive updates and be notified when we launch.</p>
+    <form id="email-form">
+      <input type="email" id="email" placeholder="Your email..." required>
+      <button type="submit">Subscribe</button>
+    </form>
+    <p id="successMessage" style="display:none; color:green;">Thank you! You've been added to the list.</p>
+  </div>
+</div>
+
+
 </body>
 </html>
