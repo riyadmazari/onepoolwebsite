@@ -387,13 +387,54 @@
   transform: scale(0.98);
 }
 
+/* Ensure the button stays visible on all screen sizes */
+.btn-always-visible {
+  display: inline-block;
+  background-color: var(--medium-sea-green);
+  color: white;
+  text-align: center;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: background-color 0.3s ease-in-out;
+  width: fit-content;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+/* Button Hover Effect */
+.btn-always-visible:hover {
+  background-color: #d84303;
+}
+
+/* Ensure it's always visible and centered */
+.button-container {
+  text-align: center;
+  margin-top: 70px;
+}
+
+.contact-block {
+  padding-top: 0px !important;
+}
+
+.info-block {
+  padding-bottom: 2em !important;
+}
 
 /* Responsive Design - Adjust for smaller screens */
 @media screen and (max-width: 991px) {
   .logo-follow {
     width: 100%;
     justify-content: center;
+}
+
+.btn-always-visible {
+  font-size: 14px;
+  padding: 10px 16px;
 }
 
 .primary-logo {
@@ -461,6 +502,11 @@
     top: 0px;
     width: 50px;
     opacity: 1;
+}
+
+.btn-always-visible {
+  font-size: 12px;
+  padding: 8px 12px;
 }
 
   .paragraph {
@@ -616,7 +662,7 @@ a {
     </div>    
     <div class="btn-atf">
       <button onclick="document.getElementById('email-popup').style.display='block'">
-        Subscribe for Updates
+        Join our waitlist!
       </button>
    </div>   
   </header>
@@ -1064,7 +1110,7 @@ a {
             </div>
             <div class="grid-par">
               <p class="paragraph">
-                Easly orgnize and manage multiple payment groups.
+                Easily orgnize and manage multiple payment groups.
               </p>
             </div>
           </div>
@@ -1175,6 +1221,14 @@ a {
           <br>
           We handle the annoying part.
         </h2>
+      </div>
+      <!-- ✅ Insert Button Here -->
+      <div class="button-container">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSc2lzRPEv6siziDHnSOClVixUs6gFU-4uoinLH0hjkq6LvaVg/viewform?usp=dialog" 
+           target="_blank" 
+           class="btn-always-visible">
+          Help us know you better
+        </a>
       </div>
     </div>
   </div>
