@@ -7,7 +7,7 @@
 <link href="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/css/cocoon-app.webflow.5b802ab61.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="Frame_1.css">
 <!-- Alternative: Use OnePool0.jpeg directly -->
-<link rel="icon" type="image/jpeg" href="images/OnePoolO.jpeg">
+<link rel="icon" type="image/jpeg" href="images/OnePoolrb.png">
 <style>
   @media (min-width:992px) {
     html.w-mod-js:not(.w-mod-ix) 
@@ -246,38 +246,39 @@
   top: 20px;
   left: 20px;
   z-index: 1000;
-  width: 8em; /* Base container size */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: auto;
 }
 
 .logo-follow img {
-  width: 100%;  /* Ensures images fill the container */
-  height: auto;
+  max-width: 250px;  /* Ensures images fill the container */
   transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
-  position: absolute;
-  top: 0;
-  left: 0;
 }
 
 .primary-logo {
+  position: absolute;
+  left: 90px;
+  transform: translateX(-50%);
+  width: 200px; /* Adjust size as needed */
   opacity: 1;
-  transform: scale(1);
 }
 
-  .secondary-logo {
-    opacity: 0;
-    transform: scale(0.8); /* Adjust to make the secondary logo smaller */
-    width: 50% !important; /* Reduce size */
-  }
+.secondary-logo {
+  position: absolute;
+  left: -5px !important;
+  width: 50px; /* Adjust size */
+  opacity: 0;
+}
 
-
+/* When scrolled, show the secondary logo and hide the primary */
 .scrolled .primary-logo {
   opacity: 0;
-  transform: scale(0.8);
 }
 
 .scrolled .secondary-logo {
   opacity: 1;
-  transform: scale(1);
 }
 
 
@@ -391,20 +392,26 @@
 /* Responsive Design - Adjust for smaller screens */
 @media screen and (max-width: 991px) {
   .logo-follow {
-    width: 20% !important;
-    position: fixed;
-    top: 20px;  /* Same positioning */
-    left: 20px; /* Adjust if needed */
-    z-index: 1000;
-    transition: transform 0.3s ease-out;
-    cursor: pointer;
-  }
+    width: 100%;
+    justify-content: center;
+}
 
-  .secondary-logo {
-    opacity: 0;
-    transform: scale(0.8); /* Adjust to make the secondary logo smaller */
-    width: 50% !important; /* Reduce size */
-  }
+.primary-logo {
+    position: absolute;
+    top: 20px;
+    left: 47.5%;
+    transform: translateX(-50%);
+    width: 250px;
+    opacity: 1;
+}
+
+.secondary-logo {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    width: 50px;
+    opacity: 1;
+}
 
   .paragraph {
     font-size: 2.02em;
@@ -435,14 +442,26 @@
 
 @media screen and (max-width: 479px) {
   .logo-follow {
-    width: 20% !important;
-    position: fixed;
-    top: 10px;  /* Same positioning */
-    left: 10px; /* Adjust if needed */
-    z-index: 1000;
-    transition: transform 0.3s ease-out;
-    cursor: pointer;
-  }
+    width: 100%;
+    justify-content: center;
+}
+
+.primary-logo {
+    position: absolute;
+    top: 10px;
+    left: 45%;
+    transform: translateX(-50%);
+    width: 250px;
+    opacity: 1;
+}
+
+.secondary-logo {
+    position: absolute;
+    left: -10px !important;
+    top: 0px;
+    width: 50px;
+    opacity: 1;
+}
 
   .paragraph {
     font-size: 3.90em;
@@ -592,7 +611,7 @@ a {
     </div>    
     <div style="opacity:0" class="header-par">
       <p class="paragraph">
-        With <strong>OnePool</strong>, group payment no longer a hassle — automatically split at checkout.
+        With <strong>OnePool</strong>, group payment are no longer a hassle — automatically split at checkout.
       </p>
     </div>    
     <div class="btn-atf">
@@ -1016,56 +1035,56 @@ a {
       <div data-w-id="443d68f1-2ac2-ad32-333b-c2726e55c107" class="process-grid">
         <div id="w-node-_858ea9ba-2ede-5ab4-c763-ef5319ec35f5-24b5b03b" style="-webkit-transform:translate3d(0, 30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="process-blocks first">
           <div id="w-node-_48dc83f6-9efc-9e3c-006f-458bc2e0819d-24b5b03b" class="grid-content">
-            <div class="grid-par">
-              <p class="paragraph">
-                Direct debit card integration ensures immediate split payments.
-              </p>
-            </div>
+            <h3 class="h3 white-mob">
+              Instant card payments
+            </h3>
             <div class="grid-img-1">
               <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b074_Grid%202%20Outer%20(2).svg" loading="lazy" alt="" class="image">
               <div class="grid-abs lottie-grid-1">
                 <div data-is-ix2-target="1" class="lottie-grid" data-w-id="55f54dcd-e79a-8b40-d6f2-f5d794b9e61f" data-animation-type="lottie" data-src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b077_Arrows%20Animate.json" data-loop="0" data-direction="1" data-autoplay="0" data-renderer="svg" data-default-duration="2.0020019204587935" data-duration="0" data-ix2-initial-state="0"></div>
               </div>
             </div>
-            <h3 class="h3 white-mob">
-              Instant card payments
-            </h3>
+            <div class="grid-par">
+              <p class="paragraph">
+                Direct debit card integration ensures immediate split payments.
+              </p>
+            </div>
           </div>
         </div>
         <div id="w-node-cc849374-5de4-12fb-91d4-5cea0140e322-24b5b03b" style="-webkit-transform:translate3d(0, 30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="process-blocks second">
           <div id="w-node-cc849374-5de4-12fb-91d4-5cea0140e323-24b5b03b" class="grid-content">
-            <div class="grid-par">
-              <p class="paragraph">
-                Easly orgnize and manage multiple payment groups.
-              </p>
-            </div>
+            <h3 class="h3 white-mob">
+              Group management
+            </h3>
             <div class="grid-img-1">
               <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b071_Grid%202%20Inner.svg" loading="lazy" alt="" class="image">
               <div style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)" class="grid-abs rotate-2">
                 <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b070_Grid%202%20Outer.svg" loading="lazy" alt="" class="image">
               </div>
             </div>
-            <h3 class="h3 white-mob">
-              Group management
-            </h3>
+            <div class="grid-par">
+              <p class="paragraph">
+                Easly orgnize and manage multiple payment groups.
+              </p>
+            </div>
           </div>
         </div>
         <div id="w-node-_604997d7-a1b3-396d-2122-5a0375a8e6be-24b5b03b" style="-webkit-transform:translate3d(0, 30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="process-blocks third">
           <div id="w-node-_604997d7-a1b3-396d-2122-5a0375a8e6bf-24b5b03b" class="grid-content">
-            <div class="grid-par">
-              <p class="paragraph">
-                Set it once, and let our system handle the rest automatically.
-              </p>
-            </div>
+            <h3 class="h3 white-mob">
+              Automatic splitting
+            </h3>
             <div class="grid-img-1">
               <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b072_Grid%203%20Outer.svg" loading="lazy" alt="" class="image">
               <div style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)" class="grid-abs rotate-3">
                 <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b073_Grid%203%20Inner.svg" loading="lazy" alt="" class="image">
               </div>
             </div>
-            <h3 class="h3 white-mob">
-              Automatic splitting
-            </h3>
+            <div class="grid-par">
+              <p class="paragraph">
+                Set it once, and let our system handle the rest automatically.
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -1349,21 +1368,16 @@ a {
     function checkScroll() {
         if (window.scrollY > firstSection.clientHeight / 2) {
             primaryLogo.style.opacity = "0";
-            primaryLogo.style.transform = "scale(0.8)";
             secondaryLogo.style.opacity = "1";
-            secondaryLogo.style.transform = "scale(1)";
         } else {
             primaryLogo.style.opacity = "1";
-            primaryLogo.style.transform = "scale(1)";
             secondaryLogo.style.opacity = "0";
-            secondaryLogo.style.transform = "scale(0.8)";
         }
     }
 
     window.addEventListener("scroll", checkScroll);
     checkScroll(); // Run once on page load
 });
-
 
 </script>
 <!-- Firebase (use the latest version) -->
