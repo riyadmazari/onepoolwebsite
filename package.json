@@ -5,8 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "build": "cd webapp && npm run build",
-    "dev": "node server.js"
+    "build:dev": "vite build --mode development"
   },
   "dependencies": {
     "express": "^4.18.2"

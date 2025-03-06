@@ -11,10 +11,13 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'),
     },
   },
-  // For GitHub Pages with custom domain
+  // Use root base path since we're using a custom domain
   base: '/',
   build: {
-    // Generate a 404.html file for SPA routing
+    // Generate source maps for better debugging
+    sourcemap: true,
+    // Ensure all assets use the correct MIME types
+    assetsDir: 'assets',
     rollupOptions: {
       output: {
         manualChunks: undefined,
