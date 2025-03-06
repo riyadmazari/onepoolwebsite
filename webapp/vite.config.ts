@@ -12,7 +12,7 @@ export default defineConfig({
     },
   },
   // Use /app/ as base path since we need this for the custom domain
-  base: '/app/',
+  base: '/',
   build: {
     // Generate source maps for better debugging
     sourcemap: true,
