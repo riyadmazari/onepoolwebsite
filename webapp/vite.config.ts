@@ -11,7 +11,14 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'),
     },
   },
-  // GitHub Pages deploys to a subdirectory based on repo name
-  // Using '/' ensures assets load correctly in GitHub Pages
+  // For GitHub Pages with custom domain
   base: '/',
+  build: {
+    // Generate a 404.html file for SPA routing
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
+    },
+  },
 });
