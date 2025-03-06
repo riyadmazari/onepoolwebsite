@@ -11,8 +11,8 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'),
     },
   },
-  // Use root base path since we're using a custom domain
-  base: '/',
+  // Use /app/ as base path since we need this for the custom domain
+  base: '/app/',
   build: {
     // Generate source maps for better debugging
     sourcemap: true,
@@ -20,8 +20,19 @@ export default defineConfig({
     assetsDir: 'assets',
     rollupOptions: {
       output: {
-        manualChunks: undefined,
+        // Ensure proper chunking for better performance
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
+        },
       },
+    },
+  },
+  server: {
+    // MIME type settings for development server
+    fs: {
+      strict: true,
     },
   },
 });

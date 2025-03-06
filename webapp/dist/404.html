@@ -5,17 +5,18 @@
     <title>OnePool App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript">
-      // Single Page Apps for GitHub Pages
-      // MIT License
-      // https://github.com/rafgraph/spa-github-pages
+      // Single Page Apps for GitHub Pages with custom domain
+      // Modified from https://github.com/rafgraph/spa-github-pages
       
-      // No need for pathSegmentsToKeep when using a custom domain
-      var pathSegmentsToKeep = 0;
-
+      // No need for pathSegmentsToKeep when using the /app/ subdirectory
+      var pathSegmentsToKeep = 1; // Keep "app" in the path
+      
       var l = window.location;
+      var redirectPath = l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/';
+      
       l.replace(
         l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
+        redirectPath + '?/' +
         l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
         (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
         l.hash
@@ -23,6 +24,6 @@
     </script>
   </head>
   <body>
-    <!-- This file is needed for GitHub Pages SPA routing -->
+    <!-- This file is needed for GitHub Pages SPA routing with custom domains -->
   </body>
 </html>
