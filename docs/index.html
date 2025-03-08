@@ -148,59 +148,6 @@
 }
 
 
-
-/* Ensures the phone-inside container is properly positioned */
-.phone-inside {
-  position: absolute !important;
-  top: 50% !important; 
-  left: 50% !important;
-  transform: translate(-50%, -50%) !important;
-}
-
-/* Adjust the phone-inside images */
-.phone-inside img {
-  width: 50% !important; /* Adjusting size for better placement */
-  height: auto !important;
-  max-width: 100% !important;
-  display: block !important;
-}
-
-/* Correct positioning for Canva1 (Top Left) */
-.frame-1a {
-  position: absolute !important;
-  top: 30% !important;  
-  left: -15% !important; /* Move outward */
-  z-index: 2 !important;
-}
-
-/* Correct positioning for Canva2 (Middle Right) */
-.frame-1b {
-  position: absolute !important;
-  top: 35% !important;
-  right: -10% !important; /* Shift slightly outward */
-  z-index: 3 !important;
-}
-
-/* Correct positioning for Canva3 (Bottom Left) */
-.frame-1c {
-  position: absolute !important;
-  top: 75% !important;
-  left: -15% !important;
-  z-index: 4 !important;
-}
-
-/* Correct positioning for Canva4 (Bottom Right) */
-.frame-1d {
-  position: absolute !important;
-  top: 90% !important;
-  right: -10% !important;
-  z-index: 5 !important;
-}
-
-
-
-
-
 .phone-inside, .sticky-content-blk, .numbered-content {
 	opacity: 0;
 }
@@ -250,9 +197,7 @@
 
 .phone-inside.in-5.is-active .frame-5a {
   transform: scale(1);
-}
-
-</style>
+}</style>
 </head>
 <body>
 <div class="responsiveness w-embed"><style>body { 
@@ -791,28 +736,82 @@ a {
                 <div data-w-id="5f63b519-b174-3366-89eb-09cd8751b58a" data-is-ix2-target="1" class="lottie-phone" data-animation-type="lottie" data-src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64d48529bf066d2473f734eb_Phone%20Draw.json" data-loop="0" data-direction="1" data-autoplay="0" data-renderer="svg" data-default-duration="3.069736278036817" data-duration="0" data-ix2-initial-state="0"></div>
                 <div tr-scroll-toggle="list" class="hold-images">
                   <div class="phone-inside in-1">
-                    <!-- Canva 1 (Top Left) -->
+                    <video autoplay loop muted playsinline class="phone-video">
+                      <source src="frame.mp4" type="video/mp4">
+                      Your browser does not support the video tag.
+                    </video>
+                    <!--
+                    <div class="wip-container">
+                      <div class="wip-text">WIP</div>
+                      <div class="spinner-container">
+                       
+                        <svg width="30" height="30" viewBox="0 0 100 100">
+                          <circle
+                            cx="50"
+                            cy="50"
+                            r="35"
+                            stroke-width="6"
+                            stroke="#999"
+                            fill="none"
+                            stroke-dasharray="164.93361431346415 56.97787143782138"
+                          >
+   
+                            <animateTransform
+                              attributeName="transform"
+                              type="rotate"
+                              repeatCount="indefinite"
+                              dur="1s"
+                              from="0 50 50"
+                              to="360 50 50"
+                            />
+                          </circle>
+                        </svg>
+                      </div>
+                    </div>
+                    
+                    <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b07a_Frame1%20Base.png" loading="lazy" alt="" class="image front">
                     <div class="frame-1a">
-                        <img src="images/canva1.png" loading="lazy" alt="Canva 1" class="image">
+                      <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64fb424ed40dc0f450aa1d98_Group%2018%20(1).png" loading="lazy" sizes="(max-width: 479px) 48vw, (max-width: 991px) 38vw, 39vw" srcset="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64fb424ed40dc0f450aa1d98_Group%2018%20(1)-p-500.png 500w, https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64fb424ed40dc0f450aa1d98_Group%2018%20(1)-p-800.png 800w, https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64fb424ed40dc0f450aa1d98_Group%2018%20(1).png 1048w" alt="" class="image">
                     </div>
-                
-                    <!-- Canva 2 (Middle Right) -->
                     <div class="frame-1b">
-                        <img src="images/canva2.png" loading="lazy" alt="Canva 2" class="image">
+                      <div class="move-grey-card-1">
+                        <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b079_Grey%20Card%201.png" loading="lazy" alt="" class="image">
+                      </div>
                     </div>
-                
-                    <!-- Canva 3 (Bottom Left) -->
                     <div class="frame-1c">
-                        <img src="images/canva3.png" loading="lazy" alt="Canva 3" class="image">
+                      <div class="move-grey-card-2">
+                        <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b078_Grey%20Card%202.png" loading="lazy" alt="" class="image">
+                      </div>
                     </div>
-                
-                    <!-- Canva 4 (Bottom Right) -->
-                    <div class="frame-1d">
-                        <img src="images/canva4.png" loading="lazy" alt="Canva 4" class="image">
-                    </div>
+                     -->
                   </div>
-                
                   <div class="phone-inside in-2">
+                    <!--
+                    <div class="wip-container">
+                      <div class="wip-text">WIP</div>
+                      <div class="spinner-container">
+                        <svg width="30" height="30" viewBox="0 0 100 100">
+                          <circle
+                            cx="50"
+                            cy="50"
+                            r="35"
+                            stroke-width="6"
+                            stroke="#999"
+                            fill="none"
+                            stroke-dasharray="164.93361431346415 56.97787143782138"
+                          >
+                            <animateTransform
+                              attributeName="transform"
+                              type="rotate"
+                              repeatCount="indefinite"
+                              dur="1s"
+                              from="0 50 50"
+                              to="360 50 50"
+                            />
+                          </circle>
+                        </svg>
+                      </div>
+                    </div>
                     
                     <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b07c_Frame%202%20Base.webp" loading="lazy" sizes="(max-width: 479px) 48vw, (max-width: 991px) 32vw, 38vw" srcset="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b07c_Frame%25202%2520Base-p-500.png 500w, https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b07c_Frame%202%20Base.webp 1034w" alt="" class="image front">
                     <div class="frame-2a">
@@ -821,8 +820,36 @@ a {
                     <div class="frame-2b">
                       <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b07e_Frame%202%20Circle%202.png" loading="lazy" alt="" class="image">
                     </div>
+                    -->
                   </div>
                   <div class="phone-inside in-3">
+                    <!--
+                    <div class="wip-container">
+                      <div class="wip-text">WIP</div>
+                      <div class="spinner-container">
+                        <svg width="30" height="30" viewBox="0 0 100 100">
+                          <circle
+                            cx="50"
+                            cy="50"
+                            r="35"
+                            stroke-width="6"
+                            stroke="#999"
+                            fill="none"
+                            stroke-dasharray="164.93361431346415 56.97787143782138"
+                          >
+                            <animateTransform
+                              attributeName="transform"
+                              type="rotate"
+                              repeatCount="indefinite"
+                              dur="1s"
+                              from="0 50 50"
+                              to="360 50 50"
+                            />
+                          </circle>
+                        </svg>
+                      </div>
+                    </div>
+                    
                     <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b082_Frame%203%20Base.webp" loading="lazy" sizes="(max-width: 479px) 38vw, (max-width: 991px) 28vw, 30vw" srcset="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b082_Frame%25203%2520Base-p-500.png 500w, https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b082_Frame%203%20Base.webp 798w" alt="" class="image">
                     <div class="frame-3a">
                       <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b084_Frame%20Pop%201.webp" loading="lazy" alt="" class="image">
@@ -833,20 +860,76 @@ a {
                     <div class="frame-3c">
                       <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b085_Frame%20Pop%203.webp" loading="lazy" alt="" class="image">
                     </div>
+                    -->
                   </div>
                   <div class="phone-inside in-4">
+                    <!--
+                    <div class="wip-container">
+                      <div class="wip-text">WIP</div>
+                      <div class="spinner-container">
+                        <svg width="30" height="30" viewBox="0 0 100 100">
+                          <circle
+                            cx="50"
+                            cy="50"
+                            r="35"
+                            stroke-width="6"
+                            stroke="#999"
+                            fill="none"
+                            stroke-dasharray="164.93361431346415 56.97787143782138"
+                          >
+                            <animateTransform
+                              attributeName="transform"
+                              type="rotate"
+                              repeatCount="indefinite"
+                              dur="1s"
+                              from="0 50 50"
+                              to="360 50 50"
+                            />
+                          </circle>
+                        </svg>
+                      </div>
+                    </div>
+
                     <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b086_Frame%204a.webp" loading="lazy" sizes="(max-width: 479px) 45vw, (max-width: 991px) 36vw, 48vw" srcset="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b086_Frame%25204a-p-500.png 500w, https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b086_Frame%25204a-p-800.png 800w, https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b086_Frame%25204a-p-1080.png 1080w, https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b086_Frame%204a.webp 1266w" alt="" class="image front">
                     <div class="frame-4a">
                       <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b087_Frame%204b.png" loading="lazy" sizes="(max-width: 479px) 45vw, (max-width: 991px) 36vw, 48vw" srcset="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b087_Frame%25204b-p-500.png 500w, https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b087_Frame%204b.png 1266w" alt="" class="image">
                     </div>
+                    -->
                   </div>
+                  <!--
                   <div class="phone-inside in-5">
+                    <div class="wip-container">
+                      <div class="wip-text">WIP</div>
+                      <div class="spinner-container">
+                        <svg width="30" height="30" viewBox="0 0 100 100">
+                          <circle
+                            cx="50"
+                            cy="50"
+                            r="35"
+                            stroke-width="6"
+                            stroke="#999"
+                            fill="none"
+                            stroke-dasharray="164.93361431346415 56.97787143782138"
+                          >
+                            <animateTransform
+                              attributeName="transform"
+                              type="rotate"
+                              repeatCount="indefinite"
+                              dur="1s"
+                              from="0 50 50"
+                              to="360 50 50"
+                            />
+                          </circle>
+                        </svg>
+                      </div>
+                    </div>
+                    
                     <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b089_Frame%205%20Base.png" loading="lazy" alt="" class="image">
                     <div class="frame-5a">
                       <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b088_Frame%205a.png" loading="lazy" alt="" class="image">
                     </div>
                   </div>
-
+                  -->
                 </div>
               </div>
             </div>
