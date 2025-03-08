@@ -1,0 +1,1617 @@
+<!DOCTYPE html>
+<html data-wf-domain="www.onepoolapp.com" data-wf-page="64c101129d23396724b5b03b" data-wf-site="64c101129d23396724b5b03e">
+<head>
+<meta charset="utf-8">
+<title>OnePool</title>
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<link href="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/css/cocoon-app.webflow.5b802ab61.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="Frame_1.css">
+<!-- Alternative: Use OnePool0.jpeg directly -->
+<link rel="icon" type="image/jpeg" href="images/OnePoolrb.png">
+<style>
+  @media (min-width:992px) {
+    html.w-mod-js:not(.w-mod-ix) 
+    [data-w-id="611a7e7f-9007-6250-acf7-aa4e25ab6c92"] 
+    {-webkit-transform:
+      translate3d(0, 0%, 0) 
+      scale3d(1, 1, 1) 
+      rotateX(0) 
+      rotateY(0) 
+      rotateZ(0) 
+      skew(0, 0);
+      -moz-transform:
+      translate3d(0, 0%, 0) 
+      scale3d(1, 1, 1) 
+      rotateX(0) 
+      rotateY(0) 
+      rotateZ(0) 
+      skew(0, 0);
+      -ms-transform:
+      translate3d(0, 0%, 0) 
+      scale3d(1, 1, 1) 
+      rotateX(0) 
+      rotateY(0) 
+      rotateZ(0) 
+      skew(0, 0);
+      transform:
+      translate3d(0, 0%, 0) 
+      scale3d(1, 1, 1) 
+      rotateX(0) 
+      rotateY(0) 
+      rotateZ(0) 
+      skew(0, 0);
+    }
+  }
+</style>
+<style>
+
+  :root {
+    --dim-grey: #555;
+    --medium-sea-green: #F45404;
+    --floral-white: #f9f6f1;
+    --white-smoke: #D7DBE4;
+    --midnight-blue: #182836;
+    --light-sky-blue: #a1cef7;
+    --black: #191919;
+    --gold: #F45404;
+    --light-sky-blue-2: #61c8f6;
+}
+
+  .process-blocks.hover-block{
+    background-color: #F45404 !important;
+    color: #f9f6f1;
+  }
+
+  .footer-container {
+    border-radius: 0px !important
+  }
+
+  .header {
+    position: absolute; /* Stays within .section.no-overflow */
+    bottom: 15%; /* Moves it near the bottom */
+    left: 50%;
+    transform: translateX(-50%); /* Center it horizontally */
+    width: 100%;
+    text-align: center;
+    color: #000000;
+  }
+  
+  
+
+  .logo-container {
+    width: 10em !important;
+  }
+
+  .section.white-bg {
+    background-color: #D7DBE4 !important;
+  }
+
+  .padding-equal {
+    padding-top: 5em !important;
+  }
+
+  .ripple-effect {
+	overflow: hidden;
+ 	position: relative;
+  }
+
+
+ .ripple-effect span {
+      position: absolute;
+      display: block;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      transition: all .4s ease;
+      transform: translate(-50%, -50%);
+      z-index: -1;
+    }
+    .ripple-effect:hover span {
+      width: 400%;
+      height: 400%;
+    }
+
+   .button-effect-blue.ripple-effect span {
+        background-color: #67ae5c;
+   }
+
+</style>
+<style>
+  .process-blocks.hover-block {
+	background-color: #67AE5C;
+  color: #F9F6F1;
+  }
+
+.hover-block .image{
+	filter: invert(100%);
+}
+
+.hover-block .lottie-grid{
+	filter: invert(100%);
+}
+
+.hover-block .h3 {
+	color: #F9F6F1;
+}
+
+.phone-video {
+  width: 80%;   /* Adjust based on your phone size */
+  height: auto; /* Maintains aspect ratio */
+  max-width: 100%;
+  max-height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Perfect centering */
+  object-fit: contain; /* Prevents cropping */
+  z-index: 2; /* Ensure it is above other elements */
+}
+
+
+
+/* Ensures the phone-inside container is properly positioned */
+.phone-inside {
+  position: absolute !important;
+  top: 50% !important; 
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+/* Adjust the phone-inside images */
+.phone-inside img {
+  width: 50% !important; /* Adjusting size for better placement */
+  height: auto !important;
+  max-width: 100% !important;
+  display: block !important;
+}
+
+/* Correct positioning for Canva1 (Top Left) */
+.frame-1a {
+  position: absolute !important;
+  top: 30% !important;  
+  left: -15% !important; /* Move outward */
+  z-index: 2 !important;
+}
+
+/* Correct positioning for Canva2 (Middle Right) */
+.frame-1b {
+  position: absolute !important;
+  top: 35% !important;
+  right: -10% !important; /* Shift slightly outward */
+  z-index: 3 !important;
+}
+
+/* Correct positioning for Canva3 (Bottom Left) */
+.frame-1c {
+  position: absolute !important;
+  top: 75% !important;
+  left: -15% !important;
+  z-index: 4 !important;
+}
+
+/* Correct positioning for Canva4 (Bottom Right) */
+.frame-1d {
+  position: absolute !important;
+  top: 90% !important;
+  right: -10% !important;
+  z-index: 5 !important;
+}
+
+
+
+
+
+.phone-inside, .sticky-content-blk, .numbered-content {
+	opacity: 0;
+}
+
+.phone-inside.is-active {
+	opacity: 1;
+}
+
+.sticky-content-blk.is-active {
+	opacity: 1;
+}
+
+.numbered-content.is-active {
+	opacity: 1 !important;
+}
+
+.phone-inside.in-1.is-active .move-grey-card-1, .phone-inside.in-1.is-active .move-grey-card-2 {
+  transform: translate(0%, 0px);
+}
+
+.phone-inside.in-2.is-active .frame-2a {
+  transform: scale(1);
+}
+
+.phone-inside.in-2.is-active .frame-2b {
+  transform: scale(1);
+  transition-delay: 200ms;
+}
+
+.phone-inside.in-3.is-active .frame-3a {
+  transform: scale(1);
+}
+
+.phone-inside.in-3.is-active .frame-3b {
+  transform: scale(1);
+  transition-delay: 200ms;
+}
+
+.phone-inside.in-3.is-active .frame-3c {
+  transform: scale(1);
+  transition-delay: 400ms;
+}
+
+.phone-inside.in-4.is-active .frame-4a {
+  transform: scale(1.1);
+}
+
+.phone-inside.in-5.is-active .frame-5a {
+  transform: scale(1);
+}
+
+</style>
+</head>
+<body>
+<div class="responsiveness w-embed"><style>body { 
+  min-height: 0vw;
+  font-size: calc(0.21551724137931033vw + 0.7413793103448276em);
+}
+
+.h1-block-1, .h1-block-2, .h1-block-3 {
+  opacity: 0;
+  transform: translate3d(0, 20px, 0);
+}
+
+.email-div {
+  margin-top: 0px;
+}
+
+.section.no-overlflow {
+  height: 100vh;
+}
+
+.video-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Use contain if needed */
+  transform: translate(-50%, -50%) scale(1); /* Adjust scale as needed */
+  z-index: -1;
+}
+
+.nav-links {
+  color: var(--black);
+}
+
+.btn-contact {
+  color: var(--floral-white);
+}
+
+.button-effect-blue {
+  color: var(--floral-white);
+}
+
+.logo-follow {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: auto;
+}
+
+.logo-follow img {
+  max-width: 250px;  /* Ensures images fill the container */
+  transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+}
+
+.primary-logo {
+  position: absolute;
+  left: 90px;
+  transform: translateX(-50%);
+  width: 200px; /* Adjust size as needed */
+  opacity: 1;
+}
+
+.secondary-logo {
+  position: absolute;
+  left: -5px !important;
+  width: 50px; /* Adjust size */
+  opacity: 0;
+}
+
+/* When scrolled, show the secondary logo and hide the primary */
+.scrolled .primary-logo {
+  opacity: 0;
+}
+
+.scrolled .secondary-logo {
+  opacity: 1;
+}
+
+
+
+.paragraph {
+  font-size: 1.5em;
+}
+
+/* Popup Styles */
+.popup {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--floral-white);
+  padding: 25px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  width: 400px;
+  max-width: 90%; /* Ensures it adapts to smaller screens */
+  text-align: center;
+}
+
+.popup-content {
+  position: relative;
+}
+
+.popup input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid var(--white-smoke);
+  border-radius: 52em;
+  font-size: 16px;
+}
+
+.popup button {
+  background-color: var(--medium-sea-green);
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  font-size: 16px;
+  border-radius: 52em;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.popup button:hover {
+  background-color: #d84303;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--black);
+}
+
+.close:hover {
+  color: var(--medium-sea-green);
+}
+
+.button {
+  background-color: var(--medium-sea-green) !important;
+}
+
+.btn-atf {
+  background-color: var(--medium-sea-green) !important; /* Force uniform color */
+  color: white !important;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 52em;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  display: flex; /* Ensures inner content aligns */
+  justify-content: center;
+  align-items: center;
+  width: fit-content; /* Prevents unintended scaling */
+}
+
+.btn-atf button {
+  background-color: transparent !important; /* Removes any inner white box */
+  border: none;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+
+.btn-atf:hover {
+  background-color: #d84303; /* Slightly darker on hover */
+  transform: scale(1.05);
+}
+
+.btn-atf:active {
+  transform: scale(0.98);
+}
+
+/* Ensure the button stays visible on all screen sizes */
+.btn-always-visible {
+  display: inline-block;
+  background-color: var(--medium-sea-green);
+  color: white;
+  text-align: center;
+  padding: 12px 20px;
+  font-size: 16px;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: background-color 0.3s ease-in-out;
+  width: fit-content;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Button Hover Effect */
+.btn-always-visible:hover {
+  background-color: #d84303;
+}
+
+/* Ensure it's always visible and centered */
+.button-container {
+  text-align: center;
+  margin-top: 70px;
+}
+
+.contact-block {
+  padding-top: 0px !important;
+}
+
+.info-block {
+  padding-bottom: 2em !important;
+}
+
+/* Responsive Design - Adjust for smaller screens */
+@media screen and (max-width: 991px) {
+  .logo-follow {
+    width: 100%;
+    justify-content: center;
+}
+
+.btn-always-visible {
+  font-size: 14px;
+  padding: 10px 16px;
+}
+
+.primary-logo {
+    position: absolute;
+    top: 20px;
+    left: 47.5%;
+    transform: translateX(-50%);
+    width: 250px;
+    opacity: 1;
+}
+
+.secondary-logo {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    width: 50px;
+    opacity: 1;
+}
+
+  .paragraph {
+    font-size: 2.02em;
+  }
+
+  .popup {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .popup h2 {
+    font-size: 30px;
+  }
+
+  .popup p {
+    font-size: 18px;
+  }
+
+  .popup input {
+    font-size: 16px;
+  }
+
+  .popup button {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .logo-follow {
+    width: 100%;
+    justify-content: center;
+}
+
+.primary-logo {
+    position: absolute;
+    top: 10px;
+    left: 45%;
+    transform: translateX(-50%);
+    width: 250px;
+    opacity: 1;
+}
+
+.secondary-logo {
+    position: absolute;
+    left: -10px !important;
+    top: 0px;
+    width: 50px;
+    opacity: 1;
+}
+
+.btn-always-visible {
+  font-size: 12px;
+  padding: 8px 12px;
+}
+
+  .paragraph {
+    font-size: 3.90em;
+  }
+  .popup {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .popup h2 {
+    font-size: 30px;
+  }
+
+  .popup p {
+    font-size: 16px;
+  }
+
+  .popup input {
+    font-size: 14px;
+  }
+
+  .popup button {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .email-div {
+    margin-top: 0px;
+  }
+  .logo-container {
+    width: 20em !important;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .logo-container {
+    width: 45em !important;
+  }
+}
+
+
+/* Min Font Size */
+@media screen and (max-width:991px) {
+ body { font-size: 1vw; }
+}
+.container {
+  max-width: 120em;
+}
+
+
+a {
+	color: inherit;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1580px)  {
+ .btf-image-4 {
+    right: 3.42em;
+    bottom: 4.84em;
+  }
+}
+
+</style>
+</div>
+<div class="logo-follow">
+  <a href="#" id="logo-link">
+    <img src="images/OnePool.png" alt="OnePool Logo" class="logo-image primary-logo">
+    <img src="images/OnePoolrb.png" alt="OnePool Logo" class="logo-image secondary-logo">
+  </a>
+</div>
+<section class="section no-overlflow">
+  <div style="opacity:0" class="navbar">
+    <div class="container">
+      <div class="nav-block">
+        <div class="nav-grid">
+          <a href="#about-sect" class="nav-links w-inline-block">
+            <div class="nav-text n1">
+              About
+            </div>
+          </a>
+          <a href="#features-sect" class="nav-links w-inline-block">
+            <div class="nav-text n2">
+              Features
+            </div>
+          </a>
+          <a href="#process-sect" class="nav-links w-inline-block">
+            <div class="nav-text n3">
+              Process
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div data-w-id="611a7e7f-9007-6250-acf7-aa4e25ab6c92" style="opacity:0" class="cta-follow">
+    <div class="container cta-contain">
+      <div class="contact-nav">
+        <!-- Change this `href` to the Google Form URL -->
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSc2lzRPEv6siziDHnSOClVixUs6gFU-4uoinLH0hjkq6LvaVg/viewform?usp=dialog" 
+           target="_blank" 
+           class="btn-contact w-inline-block">
+          <div class="nav-btn-text">
+            Help us know you better
+          </div>
+          <div class="color-btns"></div>
+        </a>
+      </div>
+    </div>
+  </div>  
+  <div data-w-id="d8aa8a2a-ce70-5c57-8b87-7d2de1d5a667" 
+    style="-webkit-transform:translate3d(0, 0, 0) scale3d(1.3, 1.3, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+         -moz-transform:translate3d(0, 0, 0) scale3d(1.3, 1.3, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+         -ms-transform:translate3d(0, 0, 0) scale3d(1.3, 1.3, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+         transform:translate3d(0, 0, 0) scale3d(1.3, 1.3, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);" 
+    class="atf-bg">
+
+    <video autoplay muted loop playsinline class="video-bg">
+      <source src="images/hero-background.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+  </div>
+  <header class="header">
+    <div class="h1-holder">
+      <div class="h1-block-1" style="opacity:0;transform:none">
+        <h1 class="h1">
+          Transparent.
+          <br>
+          Smooth.
+          <br>
+          Efficient.
+        </h1>
+      </div>
+      <!--
+      <div class="h1-block-2" style="opacity:0;transform:none">
+        <h1 class="h1">
+          Transparent.
+        </h1>
+      </div>
+      <div class="h1-block-3" style="opacity:0;transform:none">
+        <h1 class="h1">
+          Efficient.
+        </h1>
+      </div>
+       -->
+    </div>    
+    <div style="opacity:0" class="header-par">
+      <p class="paragraph">
+        With <strong>OnePool</strong>, group payment are no longer a hassle — automatically split at checkout.
+      </p>
+    </div>    
+    <div class="btn-atf">
+      <button onclick="document.getElementById('email-popup').style.display='block'">
+        Join our waitlist!
+      </button>
+   </div>   
+  </header>
+</div>
+</section>
+<section id="about-sect" data-w-id="983ceac3-4334-7f50-598b-11f9b14eb5d5" class="section white-bg">
+  <div class="container btf-container">
+    <div class="btf-images">
+      <div class="btf-image-1">
+        <img src="images/about1.jpeg" loading="lazy" sizes="(max-width: 479px) 22vw, (max-width: 991px) 15vw, 16vw" srcset="images/about1.jpeg 500w, images/about1.jpeg 800w, images/about1.jpeg 1080w, images/about1.jpeg 1600w, images/about1.jpeg 2000w, images/about1.jpeg 2600w, images/about1.jpeg 3200w, images/about1.jpeg 5607w" alt="" class="image">
+      </div>
+      <div class="btf-image-2">
+        <img src="images/about2.jpeg" loading="lazy" sizes="(max-width: 479px) 27vw, (max-width: 991px) 16vw, 22vw" srcset="images/about2.jpeg 500w, images/about2.jpeg 600w" alt="" class="image">
+      </div>
+      <div class="btf-image-3">
+        <img src="images/about3.jpeg" loading="lazy" alt="" class="image">
+      </div>
+      <div class="btf-image-4">
+        <img src="images/about4.jpeg" loading="lazy" alt="" class="image">
+      </div>
+    </div>
+    <div data-w-id="fbd6dd1c-9226-60b4-cafa-5933e818404b" class="btf-content">
+      <div style="-webkit-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="lift-view">
+        <h2 class="h2 bigger-mob-h2">
+          Group payments have never been
+          <br>
+        </h2>
+      </div>
+      <div style="-webkit-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="animate-text-block">
+        <div class="you-block">
+          <h2 class="h2 bigger-mob-h2">
+            easier.
+          </h2>
+          <div style="width:0%" class="for-you-underline"></div>
+        </div>
+      </div>
+      <div class="btf-par">
+        <p class="paragraph">
+          OnePool makes it simple — create a pool, share the link, authorize and let automatic payments handle the rest. No more chasing people down.
+        </p>
+      </div>
+    </div>
+    <div data-w-id="33cf5c8d-4340-abb5-6237-35a66e374080" class="double-arrow-block">
+      <div style="-webkit-transform:translate3d(0, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:1" class="arrow-down">
+        <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b048_Arrow%20Down.svg" loading="lazy" alt="" class="image">
+      </div>
+      <div class="arrow-down lower-arrow">
+        <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b048_Arrow%20Down.svg" loading="lazy" alt="" class="image">
+      </div>
+    </div>
+  </div>
+</section>
+<section id="features-sect" class="section smoke-bg">
+  <div class="container">
+    <div class="sticky-parent">
+      <div tr-scroll-toggle="component" class="trigger-tables">
+        <div class="sticky-contain">
+          <div class="sticky-content">
+            <div class="getting-block">
+              <div class="limit-width-getting">
+                <h2 class="h2 bigger-mob-h2">
+                  Getting to know OnePool
+                </h2>
+              </div>
+              <div class="lines-write">
+                <img src="images/underline.png" loading="lazy" alt="" class="image">
+              </div>
+            </div>
+            <div class="phone-block-set">
+              <div class="phone-block">
+                <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64d486d5f7621e70573bf4a7_Phone-Cam.png" loading="lazy" sizes="(max-width: 479px) 5vw, (max-width: 991px) 1vw, 5vw" srcset="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64d486d5f7621e70573bf4a7_Phone-Cam-p-500.png 500w, https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64d486d5f7621e70573bf4a7_Phone-Cam.png 678w" alt="" class="image">
+                <div data-w-id="5f63b519-b174-3366-89eb-09cd8751b58a" data-is-ix2-target="1" class="lottie-phone" data-animation-type="lottie" data-src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64d48529bf066d2473f734eb_Phone%20Draw.json" data-loop="0" data-direction="1" data-autoplay="0" data-renderer="svg" data-default-duration="3.069736278036817" data-duration="0" data-ix2-initial-state="0"></div>
+                <div tr-scroll-toggle="list" class="hold-images">
+                  <div class="phone-inside in-1">
+                    <!-- Canva 1 (Top Left) -->
+                    <div class="frame-1a">
+                        <img src="images/canva1.png" loading="lazy" alt="Canva 1" class="image">
+                    </div>
+                
+                    <!-- Canva 2 (Middle Right) -->
+                    <div class="frame-1b">
+                        <img src="images/canva2.png" loading="lazy" alt="Canva 2" class="image">
+                    </div>
+                
+                    <!-- Canva 3 (Bottom Left) -->
+                    <div class="frame-1c">
+                        <img src="images/canva3.png" loading="lazy" alt="Canva 3" class="image">
+                    </div>
+                
+                    <!-- Canva 4 (Bottom Right) -->
+                    <div class="frame-1d">
+                        <img src="images/canva4.png" loading="lazy" alt="Canva 4" class="image">
+                    </div>
+                  </div>
+                
+                  <div class="phone-inside in-2">
+                    
+                    <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b07c_Frame%202%20Base.webp" loading="lazy" sizes="(max-width: 479px) 48vw, (max-width: 991px) 32vw, 38vw" srcset="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b07c_Frame%25202%2520Base-p-500.png 500w, https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b07c_Frame%202%20Base.webp 1034w" alt="" class="image front">
+                    <div class="frame-2a">
+                      <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b07d_Frame%202%20Circle%201.png" loading="lazy" alt="" class="image">
+                    </div>
+                    <div class="frame-2b">
+                      <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b07e_Frame%202%20Circle%202.png" loading="lazy" alt="" class="image">
+                    </div>
+                  </div>
+                  <div class="phone-inside in-3">
+                    <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b082_Frame%203%20Base.webp" loading="lazy" sizes="(max-width: 479px) 38vw, (max-width: 991px) 28vw, 30vw" srcset="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b082_Frame%25203%2520Base-p-500.png 500w, https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b082_Frame%203%20Base.webp 798w" alt="" class="image">
+                    <div class="frame-3a">
+                      <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b084_Frame%20Pop%201.webp" loading="lazy" alt="" class="image">
+                    </div>
+                    <div class="frame-3b">
+                      <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b083_Frame%20Pop%202.webp" loading="lazy" alt="" class="image">
+                    </div>
+                    <div class="frame-3c">
+                      <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b085_Frame%20Pop%203.webp" loading="lazy" alt="" class="image">
+                    </div>
+                  </div>
+                  <div class="phone-inside in-4">
+                    <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b086_Frame%204a.webp" loading="lazy" sizes="(max-width: 479px) 45vw, (max-width: 991px) 36vw, 48vw" srcset="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b086_Frame%25204a-p-500.png 500w, https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b086_Frame%25204a-p-800.png 800w, https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b086_Frame%25204a-p-1080.png 1080w, https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b086_Frame%204a.webp 1266w" alt="" class="image front">
+                    <div class="frame-4a">
+                      <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b087_Frame%204b.png" loading="lazy" sizes="(max-width: 479px) 45vw, (max-width: 991px) 36vw, 48vw" srcset="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b087_Frame%25204b-p-500.png 500w, https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b087_Frame%204b.png 1266w" alt="" class="image">
+                    </div>
+                  </div>
+                  <div class="phone-inside in-5">
+                    <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b089_Frame%205%20Base.png" loading="lazy" alt="" class="image">
+                    <div class="frame-5a">
+                      <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b088_Frame%205a.png" loading="lazy" alt="" class="image">
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="content-block-contain">
+              <div tr-scroll-toggle="list" class="content-blocks">
+                <div class="content-block-1 sticky-content-blk">
+                  <h3 class="h3">
+                    Create your custom
+                    <br>
+                    OnePool in minutes
+                  </h3>
+                  <div class="sticky-par">
+                    <p class="paragraph">
+                      Simply set a contribution cap, deadline, and share your link with friends and family. We will take care of the rest.
+                    </p>
+                  </div>
+                </div>
+                <div class="content-block-2 sticky-content-blk">
+                  <h3 class="h3">
+                    Share your OnePool link or QR with friends
+                  </h3>
+                  <div class="sticky-par">
+                    <p class="paragraph">
+                      Contributors can authorize their share in seconds.
+                    </p>
+                  </div>
+                </div>
+                <div class="content-block-3 sticky-content-blk">
+                  <h3 class="h3">
+                    Time to go shopping
+                  </h3>
+                  <div class="sticky-par">
+                    <p class="paragraph">
+                      Once everyone has authorized, time to have fun shopping. Everyone will be charged their share. It’s that easy.
+                    </p>
+                  </div>
+                </div>
+                <div class="content-block-4 sticky-content-blk">
+                  <h3 class="h3">
+                    OnePool is built for privacy and security
+                  </h3>
+                  <div class="sticky-par">
+                    <p class="paragraph">
+                      We take your privacy and security seriously. Your details are encrypted ans secure. We won't keep them.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div data-w-id="a331ee39-155a-252a-75bc-0923df337df2" class="double-arrow-sticky">
+                <div style="-webkit-transform:translate3d(0, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:1" class="arrow-down">
+                  <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b048_Arrow%20Down.svg" loading="lazy" alt="" class="image">
+                </div>
+                <div class="arrow-down lower-arrow">
+                  <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b048_Arrow%20Down.svg" loading="lazy" alt="" class="image">
+                </div>
+              </div>
+            </div>
+            <div class="numbered-sticky">
+              <div tr-scroll-toggle="list" class="position-number">
+                <div class="numbered-content num2">
+                  <div class="number-block">
+                    <div class="numbered-text">
+                      02.
+                    </div>
+                  </div>
+                  <div class="numbered-title">
+                    <div class="numbered-text">
+                      Share your OnePool link or QR with friends
+                    </div>
+                    <div class="text-fill-block">
+                      <div tr-item-animation="progress-horizontal" class="numbered-text-fill">
+                        Share your OnePool link or QR with friends
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="numbered-content num3">
+                  <div class="number-block">
+                    <div class="numbered-text">
+                      03.
+                    </div>
+                  </div>
+                  <div class="numbered-title">
+                    <div class="numbered-text">
+                      Time to go shopping
+                    </div>
+                    <div class="text-fill-block">
+                      <div tr-item-animation="progress-horizontal" class="numbered-text-fill">
+                        Time to go shopping
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="numbered-content num4">
+                  <div class="number-block">
+                    <div class="numbered-text">
+                      04.
+                    </div>
+                  </div>
+                  <div class="numbered-title">
+                    <div class="numbered-text">
+                      OnePool is built for privacy and security
+                    </div>
+                    <div class="text-fill-block">
+                      <div tr-item-animation="progress-horizontal" class="numbered-text-fill">
+                        OnePool is built for privacy and security
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="numbered-content num5">
+                  <div class="numbered-title">
+                    <div class="numbered-text">
+                      Done
+                    </div>
+                    <div class="text-fill-block">
+                      <div tr-item-animation="progress-horizontal" class="numbered-text-fill">
+                        DONE
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div tr-scroll-toggle="trigger" class="triggers trig-1"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="process-sect" data-w-id="a1d1fcce-7b22-5bfa-0ef3-fedfbe53022d" class="section white-bg">
+  <div class="container">
+    <div class="padding-equal">
+      <div data-w-id="57b3bf2e-f5a1-c7b9-3122-a40b1a969f9c" class="process-title">
+        <div style="-webkit-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="appear-2">
+          <h2 class="h2 bigger-mob-h2">
+            Why OnePool?
+            <br>
+          </h2>
+        </div>
+        <div class="process-par">
+          <p class="paragraph">
+            We know you are splitting your payments manually. Aren't you tired of chasing people around? We are here to revolutionize how this is done.
+          </p>
+        </div>
+      </div>
+      <div data-w-id="443d68f1-2ac2-ad32-333b-c2726e55c107" class="process-grid">
+        <div id="w-node-_858ea9ba-2ede-5ab4-c763-ef5319ec35f5-24b5b03b" style="-webkit-transform:translate3d(0, 30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="process-blocks first">
+          <div id="w-node-_48dc83f6-9efc-9e3c-006f-458bc2e0819d-24b5b03b" class="grid-content">
+            <h3 class="h3 white-mob">
+              Instant card payments
+            </h3>
+            <div class="grid-img-1">
+              <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b074_Grid%202%20Outer%20(2).svg" loading="lazy" alt="" class="image">
+              <div class="grid-abs lottie-grid-1">
+                <div data-is-ix2-target="1" class="lottie-grid" data-w-id="55f54dcd-e79a-8b40-d6f2-f5d794b9e61f" data-animation-type="lottie" data-src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b077_Arrows%20Animate.json" data-loop="0" data-direction="1" data-autoplay="0" data-renderer="svg" data-default-duration="2.0020019204587935" data-duration="0" data-ix2-initial-state="0"></div>
+              </div>
+            </div>
+            <div class="grid-par">
+              <p class="paragraph">
+                Direct debit card integration ensures immediate split payments.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div id="w-node-cc849374-5de4-12fb-91d4-5cea0140e322-24b5b03b" style="-webkit-transform:translate3d(0, 30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="process-blocks second">
+          <div id="w-node-cc849374-5de4-12fb-91d4-5cea0140e323-24b5b03b" class="grid-content">
+            <h3 class="h3 white-mob">
+              Group management
+            </h3>
+            <div class="grid-img-1">
+              <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b071_Grid%202%20Inner.svg" loading="lazy" alt="" class="image">
+              <div style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)" class="grid-abs rotate-2">
+                <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b070_Grid%202%20Outer.svg" loading="lazy" alt="" class="image">
+              </div>
+            </div>
+            <div class="grid-par">
+              <p class="paragraph">
+                Easily organize and manage multiple payment groups.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div id="w-node-_604997d7-a1b3-396d-2122-5a0375a8e6be-24b5b03b" style="-webkit-transform:translate3d(0, 30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="process-blocks third">
+          <div id="w-node-_604997d7-a1b3-396d-2122-5a0375a8e6bf-24b5b03b" class="grid-content">
+            <h3 class="h3 white-mob">
+              Automatic splitting
+            </h3>
+            <div class="grid-img-1">
+              <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b072_Grid%203%20Outer.svg" loading="lazy" alt="" class="image">
+              <div style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)" class="grid-abs rotate-3">
+                <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b073_Grid%203%20Inner.svg" loading="lazy" alt="" class="image">
+              </div>
+            </div>
+            <div class="grid-par">
+              <p class="paragraph">
+                Set it once, and let our system handle the rest automatically.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--
+<section class="section white-bg">
+  <div class="container">
+    <div class="padding-equal">
+      <div class="geo-locate-block">
+        <div class="geolocate-blk white-blk">
+          <div class="app-group">
+            <div class="label push-left">
+              <div class="label-text">
+                Confidential
+              </div>
+            </div>
+            <div class="app-top">
+              <h3 class="h3">
+                The App geolocates therapists for you in your area or ones that are accessible remotely.
+              </h3>
+            </div>
+          </div>
+          <div class="app-par">
+            <p class="paragraph">
+              Cocoon designed the system so that we won’t have access to your therapy sessions.
+            </p>
+          </div>
+        </div>
+        <div class="geolocate-blk darker-blk">
+          <div class="crosses-img">
+            <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b06a_Lines%20Desktop.webp" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 991px) 78vw, 48vw" srcset="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b06a_Lines%2520Desktop-p-500.png 500w, https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b06a_Lines%2520Desktop-p-800.png 800w, https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b06a_Lines%20Desktop.webp 1840w" alt="" class="image lines-desktop">
+            <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b06b_Lines%20Mob.webp" loading="lazy" sizes="(max-width: 479px) 86vw, 100vw" srcset="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b06b_Lines%2520Mob-p-500.png 500w, https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b06b_Lines%20Mob.webp 1200w" alt="" class="image lines-mobile">
+            <div data-w-id="7ed7e02d-c93e-edc7-4981-2d837a3f1283" class="pulsing-block">
+              <div data-w-id="df49d8ab-115c-70da-1eb9-e77a19ef9e91" style="-webkit-transform:translate3d(0, 0, 0) scale3d(0, 0, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(0, 0, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(0, 0, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(0, 0, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:1" class="pulsing-circle"></div>
+              <div class="smaller-pulse"></div>
+            </div>
+          </div>
+          <div class="app-group">
+            <div class="label push-left">
+              <div class="label-text">
+                Personal
+              </div>
+            </div>
+            <div class="app-top">
+              <div class="app-par-2">
+                <p class="paragraph">
+                  The App will never sell your personal information to third parties.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="app-blk-bottom">
+            <div data-w-id="3fefe2dc-eace-6b0c-9d2d-dc97d83d17bd" class="app-h3">
+              <h3 class="h3 inline-text">
+                We just want to find 
+              </h3>
+              <div class="you-div">
+                <h3 class="h3 inline-text">
+                  you
+                </h3>
+                <div class="underline-you hide"></div>
+              </div>
+              <h3 class="h3 inline-text">
+                 an amazing therapist.
+              </h3>
+            </div>
+            <a href="#contact-us" class="button-effect-blue w-inline-block">
+              <div class="btn-text">
+                Help us know you better
+              </div>
+              <div class="color-btns"></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+-->
+<section class="section white-bg">
+  <div class="container">
+    <div class="info-block">
+      <div class="top-info">
+        <h2 class="h2">
+          Just have fun
+          <br>
+          We handle the annoying part.
+        </h2>
+      </div>
+      <!-- ✅ Insert Button Here -->
+      <div class="button-container">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSc2lzRPEv6siziDHnSOClVixUs6gFU-4uoinLH0hjkq6LvaVg/viewform?usp=dialog" 
+           target="_blank" 
+           class="btn-always-visible">
+          Help us know you better
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+<footer data-w-id="e5661d31-7cff-e9d7-da90-64205083e6e0" class="section no-overlflow" style="height: 100%">
+  <div class="footer-container smoke-bg">
+    <div class="footer-top-bg"></div>
+    <div class="footer-left-bg">
+      <img src="images/underline2.png" loading="lazy" alt="" class="image">
+    </div>
+    <div id="contact-us" class="contact-block">
+      <div class="contact-par">
+        <h2 class="h2 bigger-mob-h2">
+          Coming
+          <br>
+        </h2>
+        <h2 class="h2 bigger-mob-h2">
+          Soon...
+        </h2>
+        <div data-w-id="d1793b62-5fc9-6dcb-1429-09f1f3e2c415" class="email-div">
+          <!--  
+          <div class="coming-soon-on">
+            <a href="https://play.google.com/store/apps/details?id=com.cocoon.connects" target="_blank" class="get-it-img w-inline-block">
+              <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c32e72c8b5a5a8b32a7d62_googleplay.svg" loading="lazy" alt="">
+            </a>
+            <a href="https://apps.apple.com/app/cocoon-v2/id6479022643" target="_blank" class="get-it-img w-inline-block">
+              <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c32e72686438dbe45415d6_appstore.svg" loading="lazy" alt="">
+            </a>
+          </div>
+          -->
+        </div>
+      </div>
+    </div>
+    <div data-w-id="02f7fe38-b2e2-218e-61ee-b260e56f3d32" style="-webkit-transform:translate3d(0, 30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="footer-block">
+      <div class="footer-top">
+        <div class="logo-container">
+          <img src="images/OnePoolInvert.png" loading="lazy" alt="" class="image">
+        </div>
+        <div class="footer-link-contain">
+          <div class="footer-link-wrapper spce-right">
+            <a href="#about-sect" id="w-node-a297e48b-9447-38a1-bbda-290f838287cf-24b5b03b" class="footer-link w-inline-block">
+              <div class="footer-text">
+                About
+              </div>
+            </a>
+            <a href="#process-sect" id="w-node-de28e4d8-6582-d90b-f06d-954e681229ed-24b5b03b" class="footer-link w-inline-block">
+              <div class="footer-text">
+                Features
+              </div>
+            </a>
+            <a href="#features-sect" id="w-node-f81926ff-8b5a-7cad-1c4e-0382cf5054fe-24b5b03b" class="footer-link w-inline-block">
+              <div class="footer-text">
+                Process
+              </div>
+            </a>
+          </div>
+          <!--
+          <div class="footer-link-wrapper">
+            <a id="w-node-ef69278a-071f-6e1f-3793-ab6e2a81bcfa-24b5b03b" href="#" class="footer-link w-inline-block">
+              <div class="footer-text">
+                Instagram
+              </div>
+            </a>
+            <a id="w-node-ef69278a-071f-6e1f-3793-ab6e2a81bcfd-24b5b03b" href="https://www.facebook.com/groups/1214564773273234/" target="_blank" class="footer-link w-inline-block">
+              <div class="footer-text">
+                Facebook
+              </div>
+            </a>
+            <a id="w-node-ef69278a-071f-6e1f-3793-ab6e2a81bd00-24b5b03b" href="#" class="footer-link w-inline-block">
+              <div class="footer-text">
+                Twitter
+              </div>
+            </a>
+            <a id="w-node-_75ac59a2-c4e0-fd6a-db71-a15ff39af890-24b5b03b" href="#" class="footer-link w-inline-block">
+              <div class="footer-text">
+                LinkedIn
+              </div>
+            </a>
+          </div>
+          -->
+        </div>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSc2lzRPEv6siziDHnSOClVixUs6gFU-4uoinLH0hjkq6LvaVg/viewform?usp=dialog" class="btn-contact mob-hide w-inline-block">
+          <div class="nav-btn-text">
+            Help us know you better
+          </div>
+          <div class="color-btns color-fill-2"></div>
+        </a>
+      </div>
+      <!-- 
+      <div data-w-id="35522756-b5e6-ad44-b0df-c398b6fd1a36" class="email-div">
+        <a style="-webkit-transform:translate3d(0, 30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" href="mailto:hello@cocoon.com?subject=Email%20from%20website" class="email-link w-inline-block">
+          <div class="email-text">
+          </div>
+        </a>
+        <div class="label white-label link-label">
+          <div class="label-text">
+            Help us know you better
+          </div>
+        </div>
+        <div class="coming-soon-on">
+          <a href="https://play.google.com/store/apps/details?id=com.cocoon.connects" target="_blank" class="get-it-img w-inline-block">
+            <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c32e72c8b5a5a8b32a7d62_googleplay.svg" loading="lazy" alt="">
+          </a>
+          <a href="https://apps.apple.com/app/cocoon-v2/id6479022643" target="_blank" class="get-it-img w-inline-block">
+            <img src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/64c32e72686438dbe45415d6_appstore.svg" loading="lazy" alt="">
+          </a>
+        </div>
+      </div>
+      -->
+    </div>
+    <div class="lowest-block">
+      <!-- 
+      <div class="lowest-left-block">
+        <a href="./privacy-policy/index.html" target="_blank" class="label-text lower-links">
+          Privacy Policy
+        </a>
+        <a href="./terms-of-use/index.html" target="_blank" class="label-text lower-links">
+          Terms
+        </a>
+      </div>
+      -->
+      <div class="label-text center-mob">
+        © ONEPOOL, 2025
+      </div>
+      <div class="rights-block">
+        <div class="label-text">
+          ALL RIGHTS RESERVED
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=64c101129d23396724b5b03e" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script src="https://cdn.prod.website-files.com/64c101129d23396724b5b03e/js/webflow.2c7332a43.js" type="text/javascript"></script>
+<script>
+/*
+  $(document).ready(function() {
+    $('.ripple-effect').on('mouseenter', function(e) {
+
+      var presentOfset = $(this).offset(),
+          relX = e.pageX - presentOfset.left,
+          relY = e.pageY - presentOfset.top;
+
+
+      $(this).find('span').css({
+        top: relY,
+        left: relX,
+      });
+    });
+   });
+   
+    $('.ripple-effect').on('mouseout', function(e) {
+
+      var presentOfset = $(this).offset(),
+          relX = e.pageX - presentOfset.left,
+          relY = e.pageY - presentOfset.top;
+
+      $(this).find('span').css({
+        top: relY,
+        left: relX,
+      });
+    });
+*/
+</script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
+  
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      const logo = document.querySelector("#logo-link");
+  
+      if (logo) {
+          logo.addEventListener("click", function(event) {
+              event.preventDefault(); // Prevent default link behavior
+              window.scrollTo({
+                  top: 0,
+                  behavior: "smooth"
+              });
+          });
+      }
+  });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const firstSection = document.querySelector(".section.no-overlflow");
+    const primaryLogo = document.querySelector(".primary-logo");
+    const secondaryLogo = document.querySelector(".secondary-logo");
+
+    if (!firstSection || !primaryLogo || !secondaryLogo) return;
+
+    function checkScroll() {
+        if (window.scrollY > firstSection.clientHeight / 2) {
+            primaryLogo.style.opacity = "0";
+            secondaryLogo.style.opacity = "1";
+        } else {
+            primaryLogo.style.opacity = "1";
+            secondaryLogo.style.opacity = "0";
+        }
+    }
+
+    window.addEventListener("scroll", checkScroll);
+    checkScroll(); // Run once on page load
+});
+
+</script>
+<!-- Firebase (use the latest version) -->
+<!-- Firebase v9+ (Ensure these are placed before your script using Firebase) -->
+<script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore-compat.js"></script>
+
+
+<script>
+  // ✅ Ensure Firebase is loaded before initializing
+  document.addEventListener("DOMContentLoaded", async function () {
+    console.log("🔥 DOM fully loaded!");
+
+    // Ensure Firebase is loaded
+    if (typeof firebase === "undefined") {
+        console.error("❌ Firebase SDK not loaded. Check your script imports.");
+        return;
+    }
+
+    // ✅ Firebase Configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyA4GUJv-M4W5ZaY-5-6yGY6um_X1EBWEQg",
+        authDomain: "onepool-800e2.firebaseapp.com",
+        projectId: "onepool-800e2",
+        storageBucket: "onepool-800e2.appspot.com",
+        messagingSenderId: "370160885219",
+        appId: "1:370160885219:web:7a5c223281ab96c047d4d6",
+        measurementId: "G-QSTDV4QVZM"
+    };
+
+    // ✅ Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    console.log("✅ Firebase App Initialized:", app.name);
+
+    try {
+        // ✅ Initialize Firestore
+        const db = firebase.firestore();
+        console.log("✅ Firestore Initialized");
+
+        // Store `db` globally
+        window.db = db;
+
+        // ✅ Now, attach form event listener safely
+        setupForm(db);
+    } catch (error) {
+        console.error("❌ Error initializing Firestore:", error);
+    }
+});
+
+function setupForm(db) {
+    const emailForm = document.getElementById("email-form");
+    if (!emailForm) {
+        console.error("❌ Email form not found!");
+        return;
+    }
+
+    emailForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const emailInput = document.getElementById("email");
+
+        if (!emailInput) {
+            console.error("❌ Email input field not found!");
+            return;
+        }
+
+        const email = emailInput.value.trim();
+        if (!email) {
+            alert("⚠️ Please enter a valid email address.");
+            return;
+        }
+
+        try {
+            await db.collection("subscribers").add({
+                email: email,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            });
+
+            alert("✅ Thank you for subscribing!");
+            emailInput.value = ""; // Clear input
+            document.getElementById("email-popup").style.display = "none";
+        } catch (error) {
+            console.error("❌ Error adding document:", error);
+            alert("There was an error. Please try again.");
+        }
+    });
+}
+
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Get button and popup elements
+    const subscribeButton = document.querySelector(".btn-atf button");
+    const popup = document.getElementById("email-popup");
+    const closeBtn = document.querySelector(".popup .close");
+  
+    if (subscribeButton && popup && closeBtn) {
+      subscribeButton.addEventListener("click", function () {
+        popup.style.display = "block";
+      });
+  
+      closeBtn.addEventListener("click", function () {
+        popup.style.display = "none";
+      });
+  
+      // Close when clicking outside the popup
+      window.addEventListener("click", function (event) {
+        if (event.target === popup) {
+          popup.style.display = "none";
+        }
+      });
+    }
+  });
+  
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const targetElements = document.querySelectorAll(".h1-block-1, .h1-block-2, .h1-block-3");
+    
+    if (targetElements.length > 0) {
+        gsap.to(targetElements, {
+            opacity: 1,
+            transform: "none",
+            duration: 0.5,
+            stagger: 0.2
+        });
+    } else {
+        console.warn("⚠️ GSAP target elements not found! Check if they are in the DOM.");
+    }
+});
+
+</script>
+<script>
+
+  
+
+$('.process-blocks').on('mouseenter mouseleave', function() {
+  $(this).toggleClass('hover-block');
+});
+
+$('.submit-prox').on('click', function() {
+  $('.submit-btn').click();
+});
+
+//scrolling-animation
+$("[tr-scroll-toggle='component']").each(function (index) {
+  let component = $(this);
+  let lists = component.find("[tr-scroll-toggle='list']");
+  let itemTotal = lists.first().children().length;
+  component.find("[tr-scroll-toggle='number-total']").text(itemTotal);
+  component.find(".h1-block-1, .h1-block-2, .h1-block-3").css({
+    opacity: 1,
+    transform: "none",
+  });
+
+  let firstTrigger = component.find("[tr-scroll-toggle='trigger']").first();
+  for (let i = 1; i < itemTotal; i++) {
+    firstTrigger.clone().appendTo(component);
+  }
+  // Animation logic for triggers
+  let triggers = component.find("[tr-scroll-toggle='trigger']");
+  triggers.each(function (index) {
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: $(this),
+        start: "top center", // Adjust the trigger point if necessary
+        end: "bottom center",
+        scrub: true,
+        onEnter: () => {
+          if (index === 0) {
+            gsap.to(".h1-block-1", { opacity: 1, transform: "none", duration: 0.5 });
+          } else if (index === 1) {
+            gsap.to(".h1-block-2", { opacity: 1, transform: "none", duration: 0.5 });
+          } else if (index === 2) {
+            gsap.to(".h1-block-3", { opacity: 1, transform: "none", duration: 0.5 });
+          }
+        },
+      },
+    });
+  });
+
+  firstTrigger.css("margin-top", "-140vh");
+  let trSpacer = $("<div class='tr-scroll-toggle-spacer' style='width: 100%; height: 100vh;'><\/div>").hide().appendTo(component);
+
+  let minWidth = 0;
+  let trMinWidth = component.attr("tr-min-width");
+  if (trMinWidth !== undefined && trMinWidth !== false) {
+    minWidth = +trMinWidth;
+  }
+
+  gsap.matchMedia().add(`(min-width: ${minWidth}px)`, () => {
+
+    trSpacer.show();
+
+    function makeItemActive(activeIndex) {
+      component.find("[tr-scroll-toggle='transform-y']").css("transform", `translateY(${activeIndex * -100}%)`);
+      component.find("[tr-scroll-toggle='transform-x']").css("transform", `translateX(${activeIndex * -100}%)`);
+      component.find("[tr-scroll-toggle='number-current']").text(activeIndex + 1);
+      lists.each(function (index) {
+        $(this).children().removeClass("is-active");
+        $(this).children().eq(activeIndex).addClass("is-active");
+      });
+    }
+   //makeItemActive(0);
+
+    let anchorLinks = component.find("[tr-anchors]").children();
+    anchorLinks.on("click", function () {
+      let myIndex = $(this).index();
+      let scrollDistance = triggers.eq(myIndex).offset().top + triggers.eq(myIndex).height() - 1;
+      $("html, body").animate({ scrollTop: scrollDistance });
+    });
+
+    triggers.each(function (index) {
+      let triggerIndex = index;
+      let tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: $(this),
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+          onToggle: ({ self, isActive }) => {
+            if (isActive) {
+              makeItemActive(triggerIndex);
+            }
+          }
+        },
+        defaults: {
+          ease: "none"
+        }
+      });
+      lists.each(function () {
+        let childItem = $(this).children().eq(triggerIndex);
+        tl.to(childItem.find("[tr-item-animation='progress-horizontal']"), { width: "100%" }, 0);
+      });
+    });
+  });
+});
+
+//form success animation
+$('.form').submit(()=>{	
+  $('.success-trig').click();
+});
+
+//open lightbox
+$('.play-vid-btn').on('click', function() {
+  $('.lightbox-open').click();
+});
+
+</script>
+
+<div id="email-popup" class="popup" style="display: none;">
+  <div class="popup-content">
+    <span class="close" onclick="closePopup()">&times;</span>
+    <h2>Stay Updated!</h2>
+    <p>Enter your email to receive updates and be notified when we launch.</p>
+    <form id="email-form">
+      <input type="email" id="email" placeholder="Your email..." required>
+      <button type="submit">Subscribe</button>
+    </form>
+    <p id="successMessage" style="display:none; color:green;">Thank you! You've been added to the list.</p>
+  </div>
+</div>
+
+
+</body>
+</html>

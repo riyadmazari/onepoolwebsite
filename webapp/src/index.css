@@ -1,0 +1,158 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 221.5 19.4% 86.9%; /* #D7DBE4 */
+    --foreground: 240 10% 3.9%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    
+    /* Primary orange color #F45404 */
+    --primary: 24 95% 49%;
+    --primary-foreground: 0 0% 98%;
+    
+    /* Light version of #F45404 */
+    --secondary: 24 95% 88%;
+    --secondary-foreground: 24 95% 30%;
+    
+    --muted: 24 20% 96%;
+    --muted-foreground: 240 3.8% 46.1%;
+    
+    --accent: 24 20% 96%;
+    --accent-foreground: 24 60% 30%;
+    
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 24 15% 90%;
+    --input: 24 15% 90%;
+    --ring: 24 95% 49%;
+    
+    --radius: 0.75rem;
+
+    --sidebar-background: 203 83% 95%;
+    --sidebar-foreground: 24 95% 30%;
+    --sidebar-primary: 24 95% 49%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 24 20% 96%;
+    --sidebar-accent-foreground: 24 60% 30%;
+    --sidebar-border: 24 15% 91%;
+    --sidebar-ring: 24 95% 49%;
+  }
+  
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    
+    /* Orange for dark mode */
+    --primary: 24 95% 49%;
+    --primary-foreground: 240 5.9% 10%;
+    
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 24 95% 49%;
+    
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 24 95% 49%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 24 95% 49%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-secondary rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/30 rounded-full transition-colors duration-200;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/50;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-glass border border-primary/20 backdrop-blur-md shadow-glass 
+           rounded-xl transition-all duration-300 ease-out;
+  }
+  
+  .glass-card:hover {
+    @apply shadow-glass-hover transform-gpu scale-[1.01];
+  }
+  
+  .btn-primary {
+    @apply px-6 py-3 rounded-full font-medium text-sm
+           bg-primary text-primary-foreground
+           transition-all duration-300 ease-out
+           hover:shadow-lg active:scale-95;
+  }
+  
+  .input-field {
+    @apply px-4 py-3 rounded-lg border border-input
+           bg-background text-foreground
+           focus:outline-none focus:ring-2 focus:ring-ring
+           transition-all duration-200;
+  }
+  
+  .chip {
+    @apply inline-flex items-center px-3 py-1 text-xs font-medium
+           rounded-full bg-secondary text-secondary-foreground;
+  }
+  
+  .shimmer {
+    @apply relative overflow-hidden;
+  }
+  
+  .shimmer::after {
+    content: "";
+    @apply absolute top-0 left-0 w-full h-full;
+    background: linear-gradient(90deg, transparent, rgba(244, 84, 4, 0.2), transparent);
+    @apply animate-shimmer;
+  }
+}
