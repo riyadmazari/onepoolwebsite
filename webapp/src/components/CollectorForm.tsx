@@ -265,14 +265,6 @@ export const CollectorForm = ({
         
         {contributors.length > 0 && (
           <>
-            <ScaleIn className="mb-6">
-              <LinkShare
-                link={window.location.href}
-                title="Payment Collection Link"
-                description="Share this link with others to manage this payment split"
-              />
-            </ScaleIn>
-            
             <FadeIn>
               <div className="glass-card p-5 mb-6">
                 <h3 className="font-medium mb-3">Contributor Payment Link</h3>
