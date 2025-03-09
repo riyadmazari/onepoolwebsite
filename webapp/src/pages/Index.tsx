@@ -63,12 +63,9 @@ const Index = () => {
               <form onSubmit={handleSubmit}>
                 <div className="mb-6">
                   <label htmlFor="amount" className="block text-sm font-medium mb-2">
-                    Total Amount
+                    Max Amount Spendable
                   </label>
                   <div className="relative">
-                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground">
-                      <DollarSign size={20} />
-                    </div>
                     <input
                       id="amount"
                       type="number"
