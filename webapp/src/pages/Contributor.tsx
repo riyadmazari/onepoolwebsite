@@ -66,10 +66,9 @@ const Contributor = () => {
   return (
     <PageTransition>
       <ContributorForm 
-        poolId={poolId || "demo"} 
+        poolId={poolId || "demo"}
         amount={amount}
-        availableContributors={availableContributors}
-      />
+        availableContributors={availableContributors} contributorId={""}      />
     </PageTransition>
   );
 };
