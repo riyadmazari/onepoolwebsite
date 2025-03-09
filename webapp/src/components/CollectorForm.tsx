@@ -185,7 +185,7 @@ export const CollectorForm = ({
         
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-medium">Contributors</h2>
-          
+        </div>
           <div className="flex gap-2">
             <button
               onClick={distributeFairly}
@@ -204,7 +204,6 @@ export const CollectorForm = ({
               Add Person
             </button>
           </div>
-        </div>
         
         {contributors.length === 0 ? (
           <FadeIn>
