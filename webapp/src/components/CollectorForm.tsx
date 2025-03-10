@@ -143,7 +143,7 @@ export const CollectorForm = ({
                 <DollarSign size={18} />
               </div>
               <div>
-                <p className="text-sm text-muted-foreground">Total Amount</p>
+                <p className="text-sm text-muted-foreground">Max Amount Spendable</p>
                 <div className="flex items-center">
                   <span className="text-2xl font-semibold">
                     {totalAmount.toFixed(2)}
