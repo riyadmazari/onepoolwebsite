@@ -1,49 +1,29 @@
 
-import { Contributor } from "@/components/ui/ContributorCard";
-
+/**
+ * Generates a payment link for a pool
+ * @param poolId The ID of the pool
+ * @param baseUrl The base URL of the application, defaults to window.location.origin
+ * @returns The complete payment URL
+ */
 export const generatePaymentLink = (
-  poolId = "demo",
-  baseUrl = window.location.origin
+  poolId: string = "demo",
+  baseUrl: string = window.location.origin
 ): string => {
   return `${baseUrl}/pay/${poolId}`;
 };
 
+/**
+ * Generates a collector link for a pool
+ * @param poolId The ID of the pool
+ * @param amount Optional amount to include in URL parameters
+ * @param baseUrl The base URL of the application, defaults to window.location.origin
+ * @returns The complete collector URL
+ */
 export const generateCollectorLink = (
-  poolId = "demo",
-  totalAmount: number,
-  baseUrl = window.location.origin
+  poolId: string = "demo",
+  amount?: number,
+  baseUrl: string = window.location.origin
 ): string => {
-  return `${baseUrl}/collect/${poolId}?amount=${totalAmount}`;
-};
-
-export const generateUniqueId = (): string => {
-  return Math.random().toString(36).substring(2, 10);
-};
-
-// Function to evenly distribute amount among contributors
-export const distributeAmountEvenly = (
-  contributors: Contributor[],
-  totalAmount: number
-): Contributor[] => {
-  if (contributors.length === 0) return [];
-  
-  const amountPerPerson = totalAmount / contributors.length;
-  
-  return contributors.map(contributor => ({
-    ...contributor,
-    amount: parseFloat(amountPerPerson.toFixed(2))
-  }));
-};
-
-// Function to calculate the remaining amount to be distributed
-export const calculateRemainingAmount = (
-  contributors: Contributor[],
-  totalAmount: number
-): number => {
-  const totalAssigned = contributors.reduce(
-    (sum, contributor) => sum + contributor.amount,
-    0
-  );
-  
-  return parseFloat((totalAmount - totalAssigned).toFixed(2));
+  const url = `${baseUrl}/collect/${poolId}`;
+  return amount ? `${url}?amount=${amount}` : url;
 };
