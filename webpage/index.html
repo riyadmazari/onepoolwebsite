@@ -1398,119 +1398,100 @@ function setupForm(db) {
 </script>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // Get button and popup elements
-    const subscribeButton = document.querySelector(".btn-atf button");
-    const popup = document.getElementById("email-popup");
-    const closeBtn = document.querySelector(".popup .close");
+  document.addEventListener('DOMContentLoaded', function () {
+
+    const sections = [
+      document.querySelector('.section.no-overlflow'),
+      document.getElementById('about-sect'),
+      document.getElementById('features-sect'),
+      document.getElementById('process-sect')
+    ];
   
-    if (subscribeButton && popup && closeBtn) {
-      subscribeButton.addEventListener("click", function () {
-        popup.style.display = "block";
-      });
+    let isScrolling = false;
   
-      closeBtn.addEventListener("click", function () {
-        popup.style.display = "none";
-      });
+    function smoothScroll(target) {
+      if (target) {
+        isScrolling = true;
+        target.scrollIntoView({ behavior: 'smooth' });
+        setTimeout(() => { isScrolling = false; }, 1000);
+      }
+    }
   
-      // Close when clicking outside the popup
-      window.addEventListener("click", function (event) {
-        if (event.target === popup) {
-          popup.style.display = "none";
-        }
+    function getCurrentSectionIndex() {
+      const viewportMiddle = window.innerHeight / 2;
+      return sections.findIndex(section => {
+        const rect = section.getBoundingClientRect();
+        return rect.top <= viewportMiddle && rect.bottom >= viewportMiddle;
       });
     }
-  });
+  
+    function handlePhoneSectionScroll(event) {
+      const phoneSection = document.getElementById('features-sect');
+      const nextSection = document.getElementById('process-sect');
+  
+      const phoneRect = phoneSection.getBoundingClientRect();
+      const threshold = 50; // px of next section visible before allowing scroll
+  
+      // Allow scroll only if the bottom of phone section is reached
+      if (phoneRect.bottom - threshold <= window.innerHeight) {
+        event.preventDefault();
+        smoothScroll(nextSection);
+      }
+    }
+  
+    window.addEventListener('wheel', (event) => {
+      if (isScrolling) return;
+  
+      const deltaY = event.deltaY;
+      const currentSectionIndex = getCurrentSectionIndex();
+  
+      if (deltaY > 20 && sections[currentSectionIndex + 1]) {
+        if (sections[currentSectionIndex].id === 'features-sect') {
+          handlePhoneSectionScroll(event);
+        } else {
+          event.preventDefault();
+          smoothScroll(sections[currentSectionIndex + 1]);
+        }
+      } else if (deltaY < -20 && sections[currentSectionIndex - 1]) {
+        event.preventDefault();
+        smoothScroll(sections[currentSectionIndex - 1]);
+      }
+    }, { passive: false });
+  
+    // Mobile support
+    let touchStartY = 0;
+  
+    window.addEventListener('touchstart', (event) => {
+      touchStartY = event.touches[0].clientY;
+    }, { passive: true });
+  
+    window.addEventListener('touchend', (event) => {
+      if (isScrolling) return;
+  
+      const touchEndY = event.changedTouches[0].clientY;
+      const deltaY = touchStartY - touchEndY;
+      const currentSectionIndex = getCurrentSectionIndex();
+  
+      if (deltaY > 30 && sections[currentSectionIndex + 1]) {
+        if (sections[currentSectionIndex].id === 'features-sect') {
+          handlePhoneSectionScroll(event);
+        } else {
+          smoothScroll(sections[currentSectionIndex + 1]);
+        }
+      } else if (deltaY < -30 && sections[currentSectionIndex - 1]) {
+        smoothScroll(sections[currentSectionIndex - 1]);
+      }
+    });
+  
+  });  
   
 </script>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const targetElements = document.querySelectorAll(".h1-block-1, .h1-block-2, .h1-block-3");
+  
+  
+  
+  
+  
     
-    if (targetElements.length > 0) {
-        gsap.to(targetElements, {
-            opacity: 1,
-            transform: "none",
-            duration: 0.5,
-            stagger: 0.2
-        });
-    } else {
-        console.warn("⚠️ GSAP target elements not found! Check if they are in the DOM.");
-    }
-});
-
-</script>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-  
-    const firstSection = document.querySelector('.section.no-overlflow');
-    const secondSection = document.getElementById('about-sect');
-    if (firstSection && secondSection) {
-      // Down: first -> second
-      firstSection.addEventListener('wheel', function(e) {
-        if (e.deltaY > 0) {
-          e.preventDefault();
-          secondSection.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, { passive: false });
-  
-      // Up: second -> first
-      secondSection.addEventListener('wheel', function(e) {
-        if (e.deltaY < 0) {
-          e.preventDefault();
-          firstSection.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, { passive: false });
-    }
-  
-
-    const thirdSection = document.getElementById('features-sect');
-    if (secondSection && thirdSection) {
-      // Down: second -> third
-      secondSection.addEventListener('wheel', function(e) {
-        if (e.deltaY > 0) {
-          e.preventDefault();
-          thirdSection.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, { passive: false });
-  
-      // Up: third -> second
-      thirdSection.addEventListener('wheel', function(e) {
-        if (e.deltaY < 0) {
-          e.preventDefault();
-          secondSection.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, { passive: false });
-    }
-
-    const phoneSection = document.getElementById('features-sect');
-    const nextSection = document.getElementById('process-sect');
-    // Customize how much of the next section the user must see
-    // before snapping. A positive threshold means "wait until the
-    // phone section bottom is above the viewport bottom by X px."
-    const THRESHOLD = 0; // Increase to require seeing more of the next section
-  
-    if (phoneSection && nextSection) {
-      phoneSection.addEventListener('wheel', function(e) {
-        // Only on downward scroll
-        if (e.deltaY > 0) {
-          // 1) Check if bottom of phoneSection is above/barely in the viewport
-          const phoneRect = phoneSection.getBoundingClientRect();
-          // If phoneSection's bottom is within (or above) the viewport by THRESHOLD
-          if (phoneRect.bottom <= window.innerHeight + THRESHOLD) {
-            // => They’ve started seeing #process-sect. Snap down
-            e.preventDefault();
-            nextSection.scrollIntoView({ behavior: 'smooth' });
-          }
-        }
-      }, { passive: false });
-    }
-  
-  });
-  </script>
-  
   
 
   
