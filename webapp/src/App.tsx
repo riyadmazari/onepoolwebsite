@@ -16,10 +16,9 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      <BrowserRouter basename="/app">
         <Routes>
-          <Route path="/app" element={<Index />} />
-          <Route path="/app/*" element={<Index />} />
+          <Route path="/" element={<Index />} />
           <Route path="/collect/:poolId" element={<Collector />} />
           <Route path="/pay/:poolId" element={<Contributor />} />
           <Route path="*" element={<NotFound />} />
