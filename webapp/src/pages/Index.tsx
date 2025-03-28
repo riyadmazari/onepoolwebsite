@@ -3,17 +3,15 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "../hooks/use-toast";
 import { FadeIn } from "../components/ui/animations";
-import { generateUniqueId } from "../utils/generateLinks";
+import { generateTestCollectorLink } from "../utils/generateLinks";
+import { Copy, ArrowRight, Euro } from "lucide-react";
 
 const Index = () => {
   const [amount, setAmount] = useState("");
   const [isCreating, setIsCreating] = useState(false);
+  const [testLink, setTestLink] = useState("");
   const navigate = useNavigate();
   const { toast } = useToast();
-
-  // For B2B flow, we can either:
-  // 1. Auto-redirect to a demo/example collector page
-  // 2. Show a simple form for testing purposes
   
   const handleCreatePool = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,18 +28,39 @@ const Index = () => {
     
     try {
       setIsCreating(true);
-      // For testing, generate a random pool ID
-      const tempPoolId = generateUniqueId();
-      // Navigate to collector page with amount in URL
-      navigate(`/collect/${tempPoolId}?amount=${numAmount}`);
+      // Generate a test link with the amount
+      const link = generateTestCollectorLink(numAmount);
+      setTestLink(link);
+      setTimeout(() => {
+        setIsCreating(false);
+      }, 500);
     } catch (error) {
-      console.error("Error creating pool:", error);
+      console.error("Error creating test link:", error);
       toast({
         title: "Error",
-        description: "Failed to create payment pool. Please try again.",
+        description: "Failed to create test link. Please try again.",
         variant: "destructive"
       });
       setIsCreating(false);
+    }
+  };
+
+  const handleNavigateToLink = () => {
+    if (testLink) {
+      // Extract the path from the full URL
+      const url = new URL(testLink);
+      const path = url.pathname + url.search;
+      navigate(path);
+    }
+  };
+
+  const copyToClipboard = () => {
+    if (testLink) {
+      navigator.clipboard.writeText(testLink);
+      toast({
+        title: "Link copied",
+        description: "Test collector link copied to clipboard"
+      });
     }
   };
 
@@ -105,6 +124,30 @@ const Index = () => {
                   )}
                 </button>
               </form>
+
+              {testLink && (
+                <div className="mt-6 p-4 border border-border rounded-lg bg-secondary/10">
+                  <p className="font-medium mb-2">Test Link Generated:</p>
+                  <div className="flex items-center justify-between gap-2 mb-3">
+                    <div className="truncate text-sm text-muted-foreground">
+                      {testLink}
+                    </div>
+                    <button 
+                      onClick={copyToClipboard}
+                      className="p-2 bg-primary/10 text-primary rounded-full hover:bg-primary/20 transition-colors"
+                    >
+                      <Copy size={16} />
+                    </button>
+                  </div>
+                  <button 
+                    onClick={handleNavigateToLink}
+                    className="btn-primary w-full flex items-center justify-center"
+                  >
+                    Open Collector Page
+                    <ArrowRight size={16} className="ml-2" />
+                  </button>
+                </div>
+              )}
             </div>
           </FadeIn>
           

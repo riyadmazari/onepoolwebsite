@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { User, Plus, Users, DollarSign, Send, Link, Euro, Copy } from "lucide-react";
 import { ContributorCard, Contributor } from "@/components/ui/ContributorCard";
+import { ContributorStatus } from "@/components/ui/ContributorStatus";
 import { LinkShare } from "@/components/ui/LinkShare";
 import { SlideTransition, StaggerChildren } from "@/components/ui/SlideTransition";
 import { FadeIn, ScaleIn } from "@/components/ui/animations";
@@ -182,6 +183,15 @@ export const CollectorForm = ({
             </div>
           </div>
         </div>
+        
+        {contributors.length > 0 && (
+          <FadeIn>
+            <ContributorStatus 
+              contributors={contributors}
+              totalAmount={totalAmount}
+            />
+          </FadeIn>
+        )}
         
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-medium">Contributors</h2>

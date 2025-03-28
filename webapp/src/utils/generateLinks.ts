@@ -16,6 +16,20 @@ export const generatePaymentLink = (
 };
 
 /**
+ * Generates a test collector link for a business
+ * @param amount The amount to be collected
+ * @param baseUrl The base URL of the application, defaults to window.location.origin
+ * @returns The complete collector URL with a randomly generated ID
+ */
+export const generateTestCollectorLink = (
+  amount: number,
+  baseUrl: string = window.location.origin
+): string => {
+  const testPoolId = generateUniqueId();
+  return generateCollectorLink(testPoolId, amount, baseUrl);
+};
+
+/**
  * Generates a collector link for a pool
  * @param poolId The ID of the pool
  * @param amount Optional amount to include in URL parameters
