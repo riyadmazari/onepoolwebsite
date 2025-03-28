@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useSearchParams, useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
-import { Euro, Users, Plus, Check, Clipboard } from "lucide-react";
+import { Euro, Users, Plus, Copy, Link } from "lucide-react";
 import { FadeIn } from "@/components/ui/animations";
 import { SlideTransition } from "@/components/ui/SlideTransition";
 import { ContributorCard } from "@/components/ui/ContributorCard";
@@ -10,9 +10,14 @@ import {
   getPool, 
   updatePoolContributors, 
   Contributor,
-  getSubscriptionTemplates
+  createPool
 } from "../lib/firebase";
-import { generatePaymentLink } from "../utils/generateLinks";
+import { 
+  generatePaymentLink, 
+  generateUniqueId, 
+  distributeAmountEvenly,
+  calculateRemainingAmount
+} from "../utils/generateLinks";
 
 const Collector = () => {
   const { poolId = "demo" } = useParams();
@@ -25,6 +30,7 @@ const Collector = () => {
   const [editingContributorId, setEditingContributorId] = useState<string | null>(null);
   const [subscriptionName, setSubscriptionName] = useState("Payment");
   const [isLoading, setIsLoading] = useState(true);
+  const [isNewPool, setIsNewPool] = useState(false);
   
   const { toast } = useToast();
 
@@ -32,43 +38,50 @@ const Collector = () => {
   useEffect(() => {
     const fetchPoolData = async () => {
       try {
+        // Get amount from URL params
+        const amountParam = searchParams.get("amount");
+        const amount = amountParam ? parseFloat(amountParam) : 0;
+        
+        if (!amountParam || isNaN(amount) || amount <= 0) {
+          toast({
+            title: "Invalid amount",
+            description: "Please provide a valid amount in the URL",
+            variant: "destructive"
+          });
+          navigate("/");
+          return;
+        }
+        
         if (poolId === "demo") {
-          // For demo pool, use the search param amount or default
-          const amountParam = searchParams.get("amount");
-          const amount = amountParam ? parseFloat(amountParam) : 0;
-          
-          if (!amountParam || isNaN(amount) || amount <= 0) {
-            navigate("/");
-            return;
-          }
-          
+          // For demo or new pools, create a temporary pool with the amount
           setTotalAmount(amount);
           setRemainingAmount(amount);
           setContributors([]);
+          setIsNewPool(true);
         } else {
-          // Fetch real pool data from Firebase
-          const pool = await getPool(poolId);
+          // Try to fetch existing pool
+          const existingPool = await getPool(poolId);
           
-          if (!pool) {
-            toast({
-              title: "Pool not found",
-              description: "The requested payment pool doesn't exist",
-              variant: "destructive"
-            });
-            navigate("/");
-            return;
+          if (!existingPool) {
+            // If pool doesn't exist, create a new one with the amount from URL
+            setTotalAmount(amount);
+            setRemainingAmount(amount);
+            setContributors([]);
+            setIsNewPool(true);
+          } else {
+            // Use existing pool data
+            setTotalAmount(existingPool.totalAmount);
+            setContributors(existingPool.contributors || []);
+            setSubscriptionName(existingPool.subscriptionName || "Payment");
+            
+            // Calculate remaining amount
+            const allocatedAmount = existingPool.contributors.reduce(
+              (sum, contributor) => sum + contributor.amount, 
+              0
+            );
+            setRemainingAmount(parseFloat((existingPool.totalAmount - allocatedAmount).toFixed(2)));
+            setIsNewPool(false);
           }
-          
-          setTotalAmount(pool.totalAmount);
-          setContributors(pool.contributors || []);
-          setSubscriptionName(pool.subscriptionName || "Payment");
-          
-          // Calculate remaining amount
-          const allocatedAmount = pool.contributors.reduce(
-            (sum, contributor) => sum + contributor.amount, 
-            0
-          );
-          setRemainingAmount(parseFloat((pool.totalAmount - allocatedAmount).toFixed(2)));
         }
       } catch (error) {
         console.error("Error fetching pool:", error);
@@ -82,35 +95,17 @@ const Collector = () => {
       }
     };
     
-    // Check if poolId matches a subscription template
-    const checkForSubscriptionTemplate = async () => {
-      try {
-        const templates = await getSubscriptionTemplates();
-        const template = templates[poolId];
-        
-        if (template) {
-          setTotalAmount(template.amount);
-          setRemainingAmount(template.amount);
-          setSubscriptionName(template.name);
-        }
-      } catch (error) {
-        console.error("Error checking subscription templates:", error);
-      }
-    };
-    
-    checkForSubscriptionTemplate();
     fetchPoolData();
   }, [poolId, searchParams, navigate, toast]);
 
   // Update remaining amount when contributors change
   useEffect(() => {
-    const allocated = contributors.reduce((sum, contributor) => sum + contributor.amount, 0);
-    setRemainingAmount(parseFloat((totalAmount - allocated).toFixed(2)));
+    setRemainingAmount(calculateRemainingAmount(contributors, totalAmount));
   }, [contributors, totalAmount]);
 
   const addContributor = () => {
     const newContributor: Contributor = {
-      id: Math.random().toString(36).substring(2, 10),
+      id: generateUniqueId(),
       name: `Person ${contributors.length + 1}`,
       amount: 0,
       isEditing: true
@@ -155,13 +150,7 @@ const Collector = () => {
       return;
     }
     
-    const evenAmount = totalAmount / contributors.length;
-    const updatedContributors = contributors.map(c => ({
-      ...c,
-      amount: parseFloat(evenAmount.toFixed(2))
-    }));
-    
-    setContributors(updatedContributors);
+    setContributors(distributeAmountEvenly(contributors, totalAmount));
   };
 
   const toggleEditing = (id: string) => {
@@ -196,8 +185,16 @@ const Collector = () => {
     }
     
     try {
-      // If this is not a demo pool, save to Firebase
-      if (poolId !== "demo") {
+      let finalPoolId = poolId;
+      
+      // If this is a new pool, create it in Firebase
+      if (isNewPool) {
+        finalPoolId = await createPool(totalAmount, subscriptionName, contributors);
+        // Navigate to the new pool URL
+        navigate(`/collect/${finalPoolId}?amount=${totalAmount}`, { replace: true });
+        setIsNewPool(false);
+      } else {
+        // Update existing pool
         await updatePoolContributors(poolId, contributors);
       }
       
@@ -215,13 +212,15 @@ const Collector = () => {
     }
   };
 
-  const getPaymentLink = () => generatePaymentLink(poolId);
+  const getContributorLink = (contributor: Contributor) => {
+    return generatePaymentLink(poolId, contributor.name);
+  };
 
-  const copyPaymentLink = () => {
-    navigator.clipboard.writeText(getPaymentLink());
+  const copyContributorLink = (contributor: Contributor) => {
+    navigator.clipboard.writeText(getContributorLink(contributor));
     toast({
       title: "Link copied",
-      description: "Payment link copied to clipboard"
+      description: `Payment link for ${contributor.name} copied to clipboard`
     });
   };
 
@@ -240,8 +239,8 @@ const Collector = () => {
       <div className="max-w-2xl mx-auto px-4 py-8">
         <FadeIn>
           <div className="mb-8">
-            <div className="chip mb-2 bg-primary/10 text-primary">PAYMENT REQUEST</div>
-            <h1 className="text-3xl font-semibold mb-2">Split {subscriptionName}</h1>
+            <div className="chip mb-2 bg-primary/10 text-primary">PAYMENT COLLECTION</div>
+            <h1 className="text-3xl font-semibold mb-2">Collect {subscriptionName}</h1>
             <p className="text-muted-foreground">
               Add contributors and distribute the payment amount
             </p>
@@ -260,14 +259,6 @@ const Collector = () => {
                     <Euro size={16} className="ml-1 text-muted-foreground" />
                   </div>
                 </div>
-              </div>
-              <div>
-                <button
-                  onClick={() => navigate("/")}
-                  className="px-4 py-2 border border-input rounded-lg text-sm font-medium hover:bg-secondary transition-colors"
-                >
-                  Edit
-                </button>
               </div>
             </div>
 
@@ -298,7 +289,7 @@ const Collector = () => {
             <h2 className="text-xl font-medium">Contributors</h2>
           </div>
 
-          <div className="flex gap-2">
+          <div className="flex gap-2 mb-6">
             <button
               onClick={distributeEvenly}
               className="px-4 py-2 border border-input rounded-lg text-sm font-medium hover:bg-secondary transition-colors flex items-center"
@@ -315,7 +306,7 @@ const Collector = () => {
 
           {contributors.length === 0 ? (
             <FadeIn>
-              <div className="glass-card p-6 text-center">
+              <div className="glass-card p-6 text-center mb-6">
                 <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mx-auto mb-3">
                   <Users size={24} />
                 </div>
@@ -350,43 +341,62 @@ const Collector = () => {
                       onNameChange={updateContributorName}
                       index={index}
                     />
+                    {!contributor.isEditing && (
+                      <div className="absolute right-3 top-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            copyContributorLink(contributor);
+                          }}
+                          className="p-2 rounded-full bg-primary/5 text-primary hover:bg-primary/10 transition-colors"
+                          title={`Copy payment link for ${contributor.name}`}
+                        >
+                          <Copy size={14} />
+                        </button>
+                      </div>
+                    )}
                   </div>
                 ))}
               </FadeIn>
 
-              {remainingAmount === 0 && (
+              {contributors.length > 0 && remainingAmount === 0 && (
                 <div className="flex justify-end mb-6">
                   <button onClick={saveContributors} className="btn-primary">
-                    Save Contributors
+                    {isNewPool ? "Create Pool & Save" : "Save Contributors"}
                   </button>
                 </div>
               )}
-            </>
-          )}
 
-          {contributors.length > 0 && (
-            <FadeIn>
-              <div className="glass-card p-5 mb-6">
-                <h3 className="font-medium mb-3">Contributor Payment Link</h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Share this link with all contributors to collect their payments
-                </p>
-                <div className="flex items-center justify-between p-3 bg-secondary/30 rounded-lg">
-                  <div className="font-medium">{subscriptionName} Payment Link</div>
-                  <div className="flex items-center gap-2">
-                    <div className="text-xs truncate max-w-[150px] text-muted-foreground">
-                      {getPaymentLink().substring(0, 20)}...
+              {contributors.some(c => c.name && c.amount > 0) && (
+                <FadeIn>
+                  <div className="glass-card p-5 mb-6">
+                    <h3 className="font-medium mb-3">Contributor Links</h3>
+                    <p className="text-sm text-muted-foreground mb-4">
+                      Share these links with individual contributors to collect their payments
+                    </p>
+                    <div className="space-y-3">
+                      {contributors.filter(c => c.name && c.amount > 0).map((contributor) => (
+                        <div key={`link-${contributor.id}`} className="flex items-center justify-between p-3 bg-secondary/30 rounded-lg">
+                          <div className="font-medium truncate mr-2">{contributor.name}</div>
+                          <div className="flex items-center gap-2">
+                            <div className="text-xs text-muted-foreground">
+                              {contributor.amount.toFixed(2)} €
+                            </div>
+                            <button
+                              onClick={() => copyContributorLink(contributor)}
+                              className="p-1.5 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+                              title={`Copy payment link for ${contributor.name}`}
+                            >
+                              <Copy size={14} />
+                            </button>
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                    <button
-                      onClick={copyPaymentLink}
-                      className="p-1.5 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
-                    >
-                      <Clipboard size={14} />
-                    </button>
                   </div>
-                </div>
-              </div>
-            </FadeIn>
+                </FadeIn>
+              )}
+            </>
           )}
         </FadeIn>
       </div>

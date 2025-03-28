@@ -1,3 +1,4 @@
+
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import path from 'path';
@@ -9,7 +10,7 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'),
     },
   },
-  // 🔥 Fix the base path for GitHub Pages
+  // Base path for GitHub Pages or custom hosting
   base: '/app/',  
   build: {
     sourcemap: true,
