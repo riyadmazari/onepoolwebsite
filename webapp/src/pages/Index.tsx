@@ -3,13 +3,14 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "../hooks/use-toast";
 import { FadeIn } from "../components/ui/animations";
-import { Copy, ArrowRight, Euro } from "lucide-react";
-import { createPool } from "../lib/firebase";
+import { Copy, ArrowRight, Euro, Building2 } from "lucide-react";
+import { createPool, createBusiness } from "../lib/firebase";
 
 const Index = () => {
   const [amount, setAmount] = useState("");
   const [isCreating, setIsCreating] = useState(false);
   const [testLink, setTestLink] = useState("");
+  const [showBusinessDemo, setShowBusinessDemo] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
   
@@ -66,6 +67,42 @@ const Index = () => {
         title: "Link copied",
         description: "Collector link copied to clipboard"
       });
+    }
+  };
+  
+  const handleDemoBusiness = async () => {
+    try {
+      // For demo purposes, navigate to the demo business dashboard
+      navigate(`/dashboard/demo`);
+    } catch (error) {
+      console.error("Error setting up demo business:", error);
+      toast({
+        title: "Error",
+        description: "Failed to set up demo business",
+        variant: "destructive"
+      });
+    }
+  };
+  
+  const handleCreateBusiness = async () => {
+    try {
+      setIsCreating(true);
+      // Create a new business
+      const businessId = await createBusiness(
+        "Your Business Name", 
+        "business@example.com"
+      );
+      
+      // Navigate to the business dashboard
+      navigate(`/dashboard/${businessId}`);
+    } catch (error) {
+      console.error("Error creating business:", error);
+      toast({
+        title: "Error",
+        description: "Failed to create business profile",
+        variant: "destructive"
+      });
+      setIsCreating(false);
     }
   };
 
@@ -153,6 +190,43 @@ const Index = () => {
                   </button>
                 </div>
               )}
+            </div>
+          </FadeIn>
+          
+          <FadeIn delay={0.2}>
+            <div className="glass-card p-6 mb-6">
+              <h2 className="text-2xl font-semibold mb-4">Business Dashboard</h2>
+              <p className="text-muted-foreground mb-4">
+                Create or access your business dashboard to manage payment collections.
+              </p>
+              
+              <div className="flex flex-col md:flex-row gap-3">
+                <button
+                  onClick={handleDemoBusiness}
+                  className="flex-1 btn-secondary flex items-center justify-center"
+                >
+                  <Building2 size={16} className="mr-2" />
+                  View Demo Dashboard
+                </button>
+                
+                <button
+                  onClick={handleCreateBusiness}
+                  className="flex-1 btn-primary flex items-center justify-center"
+                  disabled={isCreating}
+                >
+                  {isCreating ? (
+                    <span className="flex items-center justify-center">
+                      <div className="w-5 h-5 border-2 border-t-white/0 border-white rounded-full animate-spin mr-2"></div>
+                      Creating...
+                    </span>
+                  ) : (
+                    <>
+                      Create Business Profile
+                      <ArrowRight size={16} className="ml-2" />
+                    </>
+                  )}
+                </button>
+              </div>
             </div>
           </FadeIn>
           

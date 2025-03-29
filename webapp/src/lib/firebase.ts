@@ -1,3 +1,4 @@
+
 import { initializeApp } from "firebase/app";
 import { 
   getFirestore, 
@@ -11,7 +12,10 @@ import {
   addDoc,
   DocumentData,
   serverTimestamp,
-  Timestamp
+  Timestamp,
+  updateDoc,
+  orderBy,
+  limit
 } from "firebase/firestore";
 
 // Firebase configuration
@@ -45,13 +49,26 @@ export interface Pool {
   totalAmount: number;
   subscriptionName: string;
   contributors: Contributor[];
+  businessId?: string;
+  checkoutSessionId?: string;
+  status?: 'active' | 'completed' | 'cancelled';
+}
+
+export interface Business {
+  id: string;
+  name: string;
+  email: string;
+  stripeAccountId?: string;
+  stripeConnected?: boolean;
+  createdAt: Timestamp | null;
 }
 
 // Pool services
 export const createPool = async (
   totalAmount: number, 
   subscriptionName: string = "Payment",
-  contributors: Contributor[] = []
+  contributors: Contributor[] = [],
+  businessId?: string
 ): Promise<string> => {
   try {
     // Generate a custom ID or get one from Firestore
@@ -62,7 +79,9 @@ export const createPool = async (
       createdAt: Timestamp.now(),
       totalAmount,
       subscriptionName,
-      contributors
+      contributors,
+      businessId,
+      status: 'active'
     };
     
     // Add the document to get an ID
@@ -165,8 +184,137 @@ export const processPayments = async (
     
     // Update the pool
     await updatePoolContributors(poolId, updatedContributors);
+    
+    // Check if all contributors have paid, update pool status if true
+    const allPaid = updatedContributors.every(contributor => contributor.hasPaid);
+    if (allPaid) {
+      const poolRef = doc(db, "pools", poolId);
+      await updateDoc(poolRef, { status: 'completed' });
+    }
   } catch (error) {
     console.error("Error processing payments:", error);
+    throw error;
+  }
+};
+
+// Business services
+export const createBusiness = async (
+  name: string,
+  email: string
+): Promise<string> => {
+  try {
+    const businessesCollectionRef = collection(db, "businesses");
+    
+    const businessData: Business = {
+      id: "",
+      name,
+      email,
+      stripeConnected: false,
+      createdAt: Timestamp.now()
+    };
+    
+    const docRef = await addDoc(businessesCollectionRef, businessData);
+    const businessId = docRef.id;
+    
+    await setDoc(docRef, { ...businessData, id: businessId }, { merge: true });
+    
+    return businessId;
+  } catch (error) {
+    console.error("Error creating business:", error);
+    throw error;
+  }
+};
+
+export const getBusiness = async (businessId: string): Promise<Business | null> => {
+  try {
+    const businessRef = doc(db, "businesses", businessId);
+    const businessSnap = await getDoc(businessRef);
+    
+    if (businessSnap.exists()) {
+      return businessSnap.data() as Business;
+    } else {
+      console.log("No such business exists!");
+      return null;
+    }
+  } catch (error) {
+    console.error("Error getting business:", error);
+    throw error;
+  }
+};
+
+export const updateBusinessStripeAccount = async (
+  businessId: string,
+  stripeAccountId: string
+): Promise<void> => {
+  try {
+    const businessRef = doc(db, "businesses", businessId);
+    await updateDoc(businessRef, { 
+      stripeAccountId,
+      stripeConnected: true
+    });
+  } catch (error) {
+    console.error("Error updating business Stripe account:", error);
+    throw error;
+  }
+};
+
+export const getBusinessPools = async (businessId: string): Promise<Pool[]> => {
+  try {
+    const poolsCollectionRef = collection(db, "pools");
+    const q = query(
+      poolsCollectionRef,
+      where("businessId", "==", businessId),
+      orderBy("createdAt", "desc")
+    );
+    
+    const querySnapshot = await getDocs(q);
+    const pools: Pool[] = [];
+    
+    querySnapshot.forEach((doc) => {
+      pools.push(doc.data() as Pool);
+    });
+    
+    return pools;
+  } catch (error) {
+    console.error("Error getting business pools:", error);
+    throw error;
+  }
+};
+
+export const getBusinessStats = async (businessId: string) => {
+  try {
+    const pools = await getBusinessPools(businessId);
+    
+    const activePoolsCount = pools.filter(pool => pool.status === 'active').length;
+    const completedPoolsCount = pools.filter(pool => pool.status === 'completed').length;
+    
+    const totalAmount = pools.reduce((total, pool) => total + pool.totalAmount, 0);
+    const collectedAmount = pools.reduce((total, pool) => {
+      const poolCollected = pool.contributors.reduce((sum, contributor) => 
+        contributor.hasPaid ? sum + contributor.amount : sum, 0);
+      return total + poolCollected;
+    }, 0);
+    
+    const totalContributors = pools.reduce((total, pool) => total + pool.contributors.length, 0);
+    const verifiedContributors = pools.reduce((total, pool) => {
+      return total + pool.contributors.filter(c => c.hasVerified).length;
+    }, 0);
+    const paidContributors = pools.reduce((total, pool) => {
+      return total + pool.contributors.filter(c => c.hasPaid).length;
+    }, 0);
+    
+    return {
+      totalPools: pools.length,
+      activePools: activePoolsCount,
+      completedPools: completedPoolsCount,
+      totalAmount,
+      collectedAmount,
+      totalContributors,
+      verifiedContributors,
+      paidContributors
+    };
+  } catch (error) {
+    console.error("Error getting business stats:", error);
     throw error;
   }
 };
