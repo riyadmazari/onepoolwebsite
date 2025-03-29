@@ -1,7 +1,10 @@
-Options -MultiViews
-RewriteEngine On
-RewriteBase /app/
-# If a requested resource isn’t found, serve index.html
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^ index.html [QSA,L]
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /app/
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-l
+  RewriteRule . /app/index.html [L]
+</IfModule>
