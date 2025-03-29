@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "../hooks/use-toast";
 import { FadeIn } from "../components/ui/animations";
-import { generateTestCollectorLink } from "../utils/generateLinks";
 import { Copy, ArrowRight, Euro } from "lucide-react";
+import { createPool } from "../lib/firebase";
 
 const Index = () => {
   const [amount, setAmount] = useState("");
@@ -28,17 +28,22 @@ const Index = () => {
     
     try {
       setIsCreating(true);
-      // Generate a test link with the amount
-      const link = generateTestCollectorLink(numAmount);
-      setTestLink(link);
+      
+      // Create a real pool in Firebase and get the ID
+      const poolId = await createPool(numAmount);
+      
+      // Generate a link with the real Firebase poolId
+      const fullLink = `${window.location.origin}/app/collect/${poolId}?amount=${numAmount}`;
+      setTestLink(fullLink);
+      
       setTimeout(() => {
         setIsCreating(false);
       }, 500);
     } catch (error) {
-      console.error("Error creating test link:", error);
+      console.error("Error creating pool:", error);
       toast({
         title: "Error",
-        description: "Failed to create test link. Please try again.",
+        description: "Failed to create pool. Please try again.",
         variant: "destructive"
       });
       setIsCreating(false);
@@ -59,7 +64,7 @@ const Index = () => {
       navigator.clipboard.writeText(testLink);
       toast({
         title: "Link copied",
-        description: "Test collector link copied to clipboard"
+        description: "Collector link copied to clipboard"
       });
     }
   };
@@ -78,14 +83,14 @@ const Index = () => {
             <FadeIn>
               <h1 className="text-4xl font-bold mb-3">B2B Checkout Solution</h1>
               <p className="text-xl text-muted-foreground">
-                Create a test collector link with an amount
+                Create a collector link with an amount
               </p>
             </FadeIn>
           </div>
           
           <FadeIn delay={0.1}>
             <div className="glass-card p-8 mb-6">
-              <h2 className="text-2xl font-semibold mb-6">Test Collector Link</h2>
+              <h2 className="text-2xl font-semibold mb-6">Collector Link</h2>
               <form onSubmit={handleCreatePool}>
                 <div className="mb-6">
                   <label htmlFor="amount" className="block text-sm font-medium mb-2">
@@ -127,7 +132,7 @@ const Index = () => {
 
               {testLink && (
                 <div className="mt-6 p-4 border border-border rounded-lg bg-secondary/10">
-                  <p className="font-medium mb-2">Test Link Generated:</p>
+                  <p className="font-medium mb-2">Link Generated:</p>
                   <div className="flex items-center justify-between gap-2 mb-3">
                     <div className="truncate text-sm text-muted-foreground">
                       {testLink}
@@ -153,7 +158,7 @@ const Index = () => {
           
           <FadeIn delay={0.3} className="text-center">
             <p className="text-muted-foreground">
-              This page is for testing purposes only. In production, collector links will be created by merchants.
+              This page is for testing purposes. In production, collector links will be created by merchants.
             </p>
           </FadeIn>
         </FadeIn>
