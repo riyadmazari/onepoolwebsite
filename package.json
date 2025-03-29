@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "@types/stripe": "^8.0.417"
+  }
+}
