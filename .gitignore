@@ -1,0 +1,15 @@
+# Ignore node_modules everywhere
+webapp/node_modules/
+
+# Ignore build artifacts if any
+dist/
+build/
+
+# Ignore system files
+.DS_Store
+
+# Ignore logs
+*.log
+
+# Ignore local environment files
+.env
