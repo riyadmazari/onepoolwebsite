@@ -1,7 +1,15 @@
 
 import React from "react";
 import { Check, Clock, AlertCircle } from "lucide-react";
-import { Contributor } from "./ContributorCard";
+
+interface Contributor {
+  id: string;
+  name: string;
+  amount: number;
+  hasVerified?: boolean;
+  hasPaid?: boolean;
+  isEditing?: boolean;
+}
 
 interface ContributorStatusProps {
   contributors: Contributor[];

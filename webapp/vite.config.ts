@@ -12,6 +12,8 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  // Base path for GitHub Pages or custom hosting
+  base: '/app/',
   server: {
     port: 3000,
     open: true,
