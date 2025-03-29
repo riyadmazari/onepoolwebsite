@@ -8,12 +8,12 @@ const stripe = new Stripe(import.meta.env.VITE_STRIPE_SECRET_KEY || "", {
 
 // Generate a Stripe Connect OAuth URL using environment variables
 export const generateStripeConnectUrl = (businessId: string, redirectUri: string = process.env.STRIPE_REDIRECT_URI || ""): string => {
-  const stripeClientId = process.env.STRIPE_CLIENT_ID || "";
-  const state = encodeURIComponent(businessId);
+    const stripeClientId = import.meta.env.VITE_STRIPE_CLIENT_ID || "";
+    const state = encodeURIComponent(businessId);
+    
+    return `https://connect.stripe.com/oauth/authorize?response_type=code&client_id=${stripeClientId}&scope=read_write&redirect_uri=${encodeURIComponent(redirectUri)}&state=${state}`;
+  };
   
-  return `https://connect.stripe.com/oauth/authorize?response_type=code&client_id=${stripeClientId}&scope=read_write&redirect_uri=${encodeURIComponent(redirectUri)}&state=${state}`;
-};
-
 // Exchange an authorization code for a Stripe account ID (server-side)
 export const handleOAuthCallback = async (code: string): Promise<{ stripeAccountId: string }> => {
   try {
