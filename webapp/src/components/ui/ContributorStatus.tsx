@@ -25,29 +25,28 @@ export const ContributorStatus: React.FC<ContributorStatusProps> = ({
   }
 
   const totalContributors = contributors.length;
-  const paidContributors = contributors.filter(c => c.hasPaid).length;
   const verifiedContributors = contributors.filter(c => c.hasVerified).length;
-  const pendingContributors = contributors.filter(c => c.hasVerified && !c.hasPaid).length;
-  const notStartedContributors = contributors.filter(c => !c.hasVerified && !c.hasPaid).length;
+  const paidContributors = contributors.filter(c => c.hasPaid).length;
+  const pendingContributors = contributors.filter(c => !c.hasVerified).length;
 
-  const completionPercentage = totalContributors > 0 
-    ? Math.round((paidContributors / totalContributors) * 100) 
+  const verificationPercentage = totalContributors > 0 
+    ? Math.round((verifiedContributors / totalContributors) * 100) 
     : 0;
 
   return (
     <div className="glass-card p-5 mb-6">
-      <h3 className="font-medium mb-4">Payment Status</h3>
+      <h3 className="font-medium mb-4">Verification Status</h3>
       
       <div className="mb-4">
         <div className="h-3 bg-secondary rounded-full overflow-hidden">
           <div 
             className="h-full bg-emerald-500 transition-all duration-500 ease-out"
-            style={{ width: `${completionPercentage}%` }}
+            style={{ width: `${verificationPercentage}%` }}
           />
         </div>
         <div className="flex justify-between mt-1 text-xs text-muted-foreground">
-          <span>{paidContributors} of {totalContributors} paid</span>
-          <span>{completionPercentage}% complete</span>
+          <span>{verifiedContributors} of {totalContributors} verified</span>
+          <span>{verificationPercentage}% complete</span>
         </div>
       </div>
       
@@ -55,9 +54,9 @@ export const ContributorStatus: React.FC<ContributorStatusProps> = ({
         <div className="px-3 py-2 bg-emerald-50 rounded-lg">
           <div className="flex items-center text-emerald-600 mb-1">
             <Check size={14} className="mr-1" />
-            <span className="text-xs font-medium">Paid</span>
+            <span className="text-xs font-medium">Verified</span>
           </div>
-          <p className="text-lg font-semibold">{paidContributors}</p>
+          <p className="text-lg font-semibold">{verifiedContributors}</p>
         </div>
         
         <div className="px-3 py-2 bg-amber-50 rounded-lg">
@@ -68,12 +67,12 @@ export const ContributorStatus: React.FC<ContributorStatusProps> = ({
           <p className="text-lg font-semibold">{pendingContributors}</p>
         </div>
         
-        <div className="px-3 py-2 bg-red-50 rounded-lg">
-          <div className="flex items-center text-red-600 mb-1">
-            <AlertCircle size={14} className="mr-1" />
-            <span className="text-xs font-medium">Not Started</span>
+        <div className="px-3 py-2 bg-emerald-50 rounded-lg">
+          <div className="flex items-center text-emerald-600 mb-1">
+            <Check size={14} className="mr-1" />
+            <span className="text-xs font-medium">Ready to pay</span>
           </div>
-          <p className="text-lg font-semibold">{notStartedContributors}</p>
+          <p className="text-lg font-semibold">{paidContributors}</p>
         </div>
       </div>
       
@@ -84,9 +83,9 @@ export const ContributorStatus: React.FC<ContributorStatusProps> = ({
         </div>
         
         <div className="flex justify-between text-sm mt-1">
-          <span className="text-muted-foreground">Amount collected:</span>
+          <span className="text-muted-foreground">Cards verified:</span>
           <span className="font-medium text-emerald-600">
-            {(paidContributors / totalContributors * totalAmount).toFixed(2)} €
+            {verifiedContributors} of {totalContributors}
           </span>
         </div>
       </div>

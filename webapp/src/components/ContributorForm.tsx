@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { User, CreditCard, Check, ArrowRight, DollarSign, Euro, ChevronDown } from "lucide-react";
 import { SlideTransition } from "@/components/ui/SlideTransition";
 import { VerificationPayment } from "@/components/ui/VerificationPayment";
@@ -30,7 +30,7 @@ export const ContributorForm = ({
     name: name || "You",
     amount: amount,
     hasVerified: step === "success",
-    hasPaid: step === "success",
+    hasPaid: false,  // Only verified, not paid yet
   };
   
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -164,7 +164,7 @@ export const ContributorForm = ({
                   type="submit"
                   className="btn-primary w-full flex items-center justify-center"
                 >
-                  Continue to Payment
+                  Continue to Verification
                   <ArrowRight size={16} className="ml-2" />
                 </button>
               </div>
@@ -206,9 +206,10 @@ export const ContributorForm = ({
             <div className="text-emerald-500 mb-4 inline-block">
               <SuccessCheckmark size={80} />
             </div>
-            <h1 className="text-3xl font-semibold mb-2">Payment Complete!</h1>
+            <h1 className="text-3xl font-semibold mb-2">Verification Complete!</h1>
             <p className="text-muted-foreground">
-              Thank you, {name}. Your payment has been successfully processed.
+              Thank you, {name}. Your payment method has been successfully verified.
+              The collector will process the payment once all participants have verified their payment methods.
             </p>
           </div>
           
@@ -220,7 +221,7 @@ export const ContributorForm = ({
                     <Check size={18} />
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">Paid Amount</p>
+                    <p className="text-sm text-muted-foreground">Verified Amount</p>
                     <div className="flex items-center">
                       <span className="text-2xl font-semibold">
                         {amount.toFixed(2)}
@@ -231,7 +232,7 @@ export const ContributorForm = ({
                 </div>
                 
                 <div className="chip bg-emerald-100 text-emerald-700">
-                  Complete
+                  Verified
                 </div>
               </div>
             </div>
