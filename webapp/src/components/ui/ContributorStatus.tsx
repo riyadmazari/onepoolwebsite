@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Check, Clock, AlertCircle } from "lucide-react";
+import { Check, Clock, AlertCircle, CreditCard } from "lucide-react";
 
 interface Contributor {
   id: string;
@@ -67,10 +67,10 @@ export const ContributorStatus: React.FC<ContributorStatusProps> = ({
           <p className="text-lg font-semibold">{pendingContributors}</p>
         </div>
         
-        <div className="px-3 py-2 bg-emerald-50 rounded-lg">
-          <div className="flex items-center text-emerald-600 mb-1">
-            <Check size={14} className="mr-1" />
-            <span className="text-xs font-medium">Ready to pay</span>
+        <div className="px-3 py-2 bg-blue-50 rounded-lg">
+          <div className="flex items-center text-blue-600 mb-1">
+            <CreditCard size={14} className="mr-1" />
+            <span className="text-xs font-medium">Paid</span>
           </div>
           <p className="text-lg font-semibold">{paidContributors}</p>
         </div>
@@ -86,6 +86,13 @@ export const ContributorStatus: React.FC<ContributorStatusProps> = ({
           <span className="text-muted-foreground">Cards verified:</span>
           <span className="font-medium text-emerald-600">
             {verifiedContributors} of {totalContributors}
+          </span>
+        </div>
+        
+        <div className="flex justify-between text-sm mt-1">
+          <span className="text-muted-foreground">Payments completed:</span>
+          <span className="font-medium text-blue-600">
+            {paidContributors} of {totalContributors}
           </span>
         </div>
       </div>

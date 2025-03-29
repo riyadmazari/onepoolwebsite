@@ -6,6 +6,7 @@ import { VerificationPayment } from "@/components/ui/VerificationPayment";
 import { FadeIn, ScaleIn, SuccessCheckmark } from "@/components/ui/animations";
 import { ContributorCard, Contributor } from "@/components/ui/ContributorCard";
 import { useToast } from "@/hooks/use-toast";
+import { updateContributorStatus } from "@/lib/firebase";
 
 interface ContributorFormProps {
   contributorId: string;
@@ -29,8 +30,8 @@ export const ContributorForm = ({
     id: contributorId,
     name: name || "You",
     amount: amount,
-    hasVerified: step === "success",
-    hasPaid: false,  // Only verified, not paid yet
+    hasVerified: step === "success" || step === "verification",
+    hasPaid: false,  // Card verified but not paid yet
   };
   
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -48,8 +49,32 @@ export const ContributorForm = ({
     setStep("verification");
   };
   
-  const handleVerificationSuccess = () => {
-    setStep("success");
+  const handleVerificationSuccess = async () => {
+    try {
+      // Update the contributor status to be verified
+      if (poolId !== "demo") {
+        await updateContributorStatus(poolId, contributorId, {
+          hasVerified: true,
+          name: name || "Unknown",
+        });
+      }
+      
+      setStep("success");
+      
+      toast({
+        title: "Verification successful",
+        description: "Your payment method has been successfully verified. The payment will be processed once all participants have verified their payment methods."
+      });
+    } catch (error) {
+      console.error("Error updating contributor status:", error);
+      toast({
+        title: "Error", 
+        description: "There was an error updating your verification status.",
+        variant: "destructive"
+      });
+      // Still move to success state as the client-side verification worked
+      setStep("success");
+    }
   };
   
   const handleVerificationCancel = () => {

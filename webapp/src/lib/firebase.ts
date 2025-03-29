@@ -1,4 +1,3 @@
-
 import { initializeApp } from "firebase/app";
 import { 
   getFirestore, 
@@ -131,6 +130,43 @@ export const updateContributorStatus = async (
     await updatePoolContributors(poolId, updatedContributors);
   } catch (error) {
     console.error("Error updating contributor status:", error);
+    throw error;
+  }
+};
+
+// Process payments for verified cards
+export const processPayments = async (
+  poolId: string,
+  contributorIds: string[] = []
+): Promise<void> => {
+  try {
+    // Get the current pool
+    const pool = await getPool(poolId);
+    if (!pool) throw new Error("Pool not found");
+    
+    let updatedContributors = [...pool.contributors];
+    
+    // If contributorIds is empty, process all verified cards
+    if (contributorIds.length === 0) {
+      updatedContributors = updatedContributors.map(contributor => 
+        contributor.hasVerified 
+          ? { ...contributor, hasPaid: true } 
+          : contributor
+      );
+    } 
+    // Otherwise, only process the specified contributors
+    else {
+      updatedContributors = updatedContributors.map(contributor => 
+        contributorIds.includes(contributor.id) && contributor.hasVerified
+          ? { ...contributor, hasPaid: true } 
+          : contributor
+      );
+    }
+    
+    // Update the pool
+    await updatePoolContributors(poolId, updatedContributors);
+  } catch (error) {
+    console.error("Error processing payments:", error);
     throw error;
   }
 };
