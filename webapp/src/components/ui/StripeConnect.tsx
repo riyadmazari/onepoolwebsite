@@ -1,4 +1,4 @@
-
+// webapp/src/components/ui/StripeConnect.tsx
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { FadeIn } from "./animations";
@@ -25,14 +25,13 @@ export const StripeConnect: React.FC = () => {
     const state = params.get("state");
     
     if (code && state) {
-      // Process OAuth callback
       (async () => {
         setIsProcessingCallback(true);
         try {
-          // Exchange auth code for account ID
+          // Exchange auth code for Stripe account ID
           const { stripeAccountId } = await handleOAuthCallback(code);
           
-          // Update business with Stripe account ID
+          // Update the business record in Firebase
           await updateBusinessStripeAccount(state, stripeAccountId);
           
           setIsConnected(true);
@@ -62,11 +61,11 @@ export const StripeConnect: React.FC = () => {
   const handleConnectStripe = () => {
     setIsConnecting(true);
     try {
-      // Generate the connect URL
+      // Generate the OAuth URL
       const redirectUri = `${window.location.origin}/connect-stripe`;
       const connectUrl = generateStripeConnectUrl(businessId, redirectUri);
       
-      // Redirect to Stripe
+      // Redirect the business to Stripe Connect
       window.location.href = connectUrl;
     } catch (error) {
       console.error("Error connecting to Stripe:", error);
