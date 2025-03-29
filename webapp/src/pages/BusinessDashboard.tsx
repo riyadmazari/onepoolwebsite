@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { FadeIn } from "../components/ui/animations";
@@ -17,7 +16,7 @@ const BusinessDashboard = () => {
     const fetchBusiness = async () => {
       try {
         if (businessId === "demo") {
-          // Create a demo business for testing
+          // For demo purposes, a demo business is created (assumed to be already connected)
           setBusiness({
             id: "demo",
             name: "Demo Business",
@@ -38,6 +37,17 @@ const BusinessDashboard = () => {
             variant: "destructive"
           });
           navigate("/");
+          return;
+        }
+        
+        // If the business is not connected to Stripe, redirect them to connect their account.
+        if (!businessData.stripeConnected) {
+          toast({
+            title: "Stripe not connected",
+            description: "Please connect your Stripe account to access your dashboard",
+            variant: "destructive"
+          });
+          navigate("/connect-stripe", { state: { businessId: businessData.id } });
           return;
         }
         
