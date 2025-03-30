@@ -71,24 +71,28 @@ export const createPool = async (
   businessId?: string
 ): Promise<string> => {
   try {
-    // Generate a custom ID or get one from Firestore
     const poolsCollectionRef = collection(db, "pools");
-    
-    const poolData: Pool = {
+
+    // Create a base poolData object without the businessId field.
+    const poolData: Partial<Pool> = {
       id: "", // Will be updated after document creation
       createdAt: Timestamp.now(),
       totalAmount,
       subscriptionName,
       contributors,
-      businessId,
       status: 'active'
     };
+
+    // Only add businessId if it is defined.
+    if (businessId !== undefined) {
+      poolData.businessId = businessId;
+    }
     
-    // Add the document to get an ID
+    // Add the document to Firestore and get its ID.
     const docRef = await addDoc(poolsCollectionRef, poolData);
     const poolId = docRef.id;
     
-    // Update the pool with its ID
+    // Update the document to include its ID.
     await setDoc(docRef, { ...poolData, id: poolId }, { merge: true });
     
     return poolId;
@@ -97,6 +101,7 @@ export const createPool = async (
     throw error;
   }
 };
+
 
 export const getPool = async (poolId: string): Promise<Pool | null> => {
   try {
