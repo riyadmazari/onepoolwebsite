@@ -23,6 +23,7 @@ import {
 } from "./table";
 import { Pool, Business, getBusinessPools, getBusinessStats } from "@/lib/firebase";
 import { createLoginLink } from "@/lib/stripe";
+import { Timestamp } from "firebase/firestore";
 
 interface BusinessDashboardProps {
   business: Business;
@@ -37,31 +38,109 @@ export const BusinessDashboard: React.FC<BusinessDashboardProps> = ({ business }
   const { toast } = useToast();
 
   // Fetch business data if not in demo mode; demo data is loaded in the page container.
-  useEffect(() => {
-    const fetchBusinessData = async () => {
-      try {
-        setIsLoading(true);
-        // If a real business, fetch pools and stats from Firebase.
-        if (business.id !== "demo") {
-          const fetchedPools = await getBusinessPools(business.id);
-          setPools(fetchedPools);
-          const businessStats = await getBusinessStats(business.id);
-          setStats(businessStats);
+    // In demo mode, we load several pools with realistic names and contributors.
+    useEffect(() => {
+      const fetchBusinessData = async () => {
+        try {
+          setIsLoading(true);
+          if (business.id === "demo") {
+            // Demo pools with realistic names and larger data.
+            const demoPools: Pool[] = [
+              {
+                id: "pool1",
+                createdAt: Timestamp.fromMillis(Date.now() - 3 * 86400000 ),
+                totalAmount: 299.99,
+                subscriptionName: "Netflix - Monthly Payment",
+                contributors: [
+                  { id: "c1", name: "Alice Johnson", amount: 9.99, hasVerified: true, hasPaid: true },
+                  { id: "c2", name: "Bob Smith", amount: 9.99, hasVerified: true, hasPaid: true },
+                  { id: "c3", name: "Carol Lee", amount: 9.99, hasVerified: true, hasPaid: false },
+                  { id: "c4", name: "David Kim", amount: 9.99, hasVerified: false, hasPaid: false },
+                  { id: "c5", name: "Evelyn Garcia", amount: 9.99, hasVerified: true, hasPaid: true }
+                ],
+                status: "active"
+              },
+              {
+                id: "pool2",
+                createdAt: Timestamp.fromMillis(Date.now() - 7 * 86400000),
+                totalAmount: 79.99,
+                subscriptionName: "Spotify - Annual Subscription",
+                contributors: [
+                  { id: "c6", name: "Frank Miller", amount: 7.99, hasVerified: true, hasPaid: true },
+                  { id: "c7", name: "Grace Wilson", amount: 7.99, hasVerified: true, hasPaid: true },
+                  { id: "c8", name: "Hannah Davis", amount: 7.99, hasVerified: true, hasPaid: false }
+                ],
+                status: "active"
+              },
+              {
+                id: "pool3",
+                createdAt: Timestamp.fromMillis(Date.now() - 14 * 86400000),
+                totalAmount: 499.99,
+                subscriptionName: "Gym Membership - Monthly",
+                contributors: [
+                  { id: "c9", name: "Ian Thompson", amount: 49.99, hasVerified: true, hasPaid: true },
+                  { id: "c10", name: "Jenny Lopez", amount: 49.99, hasVerified: true, hasPaid: true },
+                  { id: "c11", name: "Kevin Brown", amount: 49.99, hasVerified: false, hasPaid: false },
+                  { id: "c12", name: "Laura Martinez", amount: 49.99, hasVerified: true, hasPaid: false },
+                  { id: "c13", name: "Mike Robinson", amount: 49.99, hasVerified: true, hasPaid: true },
+                  { id: "c14", name: "Nina Patel", amount: 49.99, hasVerified: true, hasPaid: true }
+                ],
+                status: "completed"
+              },
+              {
+                id: "pool4",
+                createdAt: Timestamp.fromMillis(Date.now() - 30 * 86400000),
+                totalAmount: 1299.99,
+                subscriptionName: "Insurance Payment - Quarterly",
+                contributors: [
+                  { id: "c15", name: "Oliver Clark", amount: 324.99, hasVerified: true, hasPaid: true },
+                  { id: "c16", name: "Paula Adams", amount: 324.99, hasVerified: true, hasPaid: true },
+                  { id: "c17", name: "Quentin Wright", amount: 324.99, hasVerified: true, hasPaid: true },
+                  { id: "c18", name: "Rachel Evans", amount: 324.99, hasVerified: true, hasPaid: true }
+                ],
+                status: "completed"
+              }
+            ];
+            const demoStats = {
+              totalPools: demoPools.length,
+              activePools: demoPools.filter(pool => pool.status === "active").length,
+              completedPools: demoPools.filter(pool => pool.status === "completed").length,
+              totalAmount: demoPools.reduce((sum, pool) => sum + pool.totalAmount, 0),
+              collectedAmount: demoPools.reduce((sum, pool) => {
+                const poolCollected = pool.contributors.reduce((s, contributor) => 
+                  contributor.hasPaid ? s + contributor.amount : s, 0);
+                return sum + poolCollected;
+              }, 0),
+              totalContributors: demoPools.reduce((sum, pool) => sum + pool.contributors.length, 0),
+              verifiedContributors: demoPools.reduce((sum, pool) => 
+                sum + pool.contributors.filter(c => c.hasVerified).length, 0),
+              paidContributors: demoPools.reduce((sum, pool) => 
+                sum + pool.contributors.filter(c => c.hasPaid).length, 0)
+            };
+            setPools(demoPools);
+            setStats(demoStats);
+          } else {
+            // For a real business, fetch data from Firebase.
+            const fetchedPools = await getBusinessPools(business.id);
+            setPools(fetchedPools);
+            const businessStats = await getBusinessStats(business.id);
+            setStats(businessStats);
+          }
+        } catch (error) {
+          console.error("Error fetching business data:", error);
+          toast({
+            title: "Error",
+            description: "Failed to load business data",
+            variant: "destructive"
+          });
+        } finally {
+          setIsLoading(false);
         }
-      } catch (error) {
-        console.error("Error fetching business data:", error);
-        toast({
-          title: "Error",
-          description: "Failed to load business data",
-          variant: "destructive"
-        });
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchBusinessData();
-  }, [business.id, toast]);
+      };
+      
+      fetchBusinessData();
+    }, [business.id, toast]);
+  
 
   const handleOpenStripeDashboard = async () => {
     if (!business.stripeAccountId) {
