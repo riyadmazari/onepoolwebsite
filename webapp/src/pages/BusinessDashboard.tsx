@@ -69,7 +69,7 @@ const BusinessDashboard = () => {
     <div className="min-h-screen bg-background">
       <header className="py-6 px-4 border-b border-border">
         <div className="container max-w-7xl mx-auto">
-          <img src="webapp/public/OnePool.png" alt="OnePool Logo" className="logo-image primary-logo" />
+          <img src="OnePool.png" alt="OnePool Logo" className="logo-image primary-logo" />
         </div>
       </header>
       
