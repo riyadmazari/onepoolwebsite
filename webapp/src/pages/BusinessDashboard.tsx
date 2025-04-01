@@ -17,11 +17,11 @@ const BusinessDashboard = () => {
     const fetchBusiness = async () => {
       try {
         if (businessId === "demo") {
-          // Load demo business data for testing
+          // Load demo business data for insights
           setBusiness({
             id: "demo",
-            name: "Demo Business",
-            email: "demo@example.com",
+            name: "Acme Corp Insights",
+            email: "insights@acmecorp.com",
             stripeConnected: true,
             stripeAccountId: "acct_demo",
             createdAt: { toMillis: () => Date.now() }

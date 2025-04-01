@@ -29,7 +29,7 @@ const Index = () => {
     try {
       setIsCreating(true);
       
-      // Create a real pool in Firebase and get the ID
+      // Create a real pool in Firebase and get the ID (for collector testing)
       const poolId = await createPool(numAmount);
       
       // Generate a link with the real Firebase poolId
@@ -52,7 +52,6 @@ const Index = () => {
 
   const handleNavigateToLink = () => {
     if (testLink) {
-      // Extract the path from the full URL
       const url = new URL(testLink);
       const path = url.pathname + url.search;
       navigate(path);
@@ -69,30 +68,21 @@ const Index = () => {
     }
   };
   
-  const handleDemoBusiness = async () => {
-    try {
-      // For demo purposes, navigate to the demo business dashboard
-      navigate(`/dashboard/demo`);
-    } catch (error) {
-      console.error("Error setting up demo business:", error);
-      toast({
-        title: "Error",
-        description: "Failed to set up demo business",
-        variant: "destructive"
-      });
-    }
+  const handleDemoBusiness = () => {
+    // Navigate to the demo dashboard; demo mode uses real-looking demo data.
+    navigate(`/dashboard/demo`);
   };
   
   const handleCreateBusiness = async () => {
     try {
       setIsCreating(true);
-      // Create a new business
+      // Create a new business profile (real flow)
       const businessId = await createBusiness(
         "Your Business Name", 
         "business@example.com"
       );
       
-      // Navigate to the business dashboard
+      // Navigate to the real business dashboard
       navigate(`/dashboard/${businessId}`);
     } catch (error) {
       console.error("Error creating business:", error);
@@ -119,7 +109,7 @@ const Index = () => {
             <FadeIn>
               <h1 className="text-4xl font-bold mb-3">B2B Checkout Solution</h1>
               <p className="text-xl text-muted-foreground">
-                Create a collector link with an amount
+                Create a collector link for testing or view your insight dashboard.
               </p>
             </FadeIn>
           </div>
@@ -196,7 +186,7 @@ const Index = () => {
             <div className="glass-card p-6 mb-6">
               <h2 className="text-2xl font-semibold mb-4">Business Dashboard</h2>
               <p className="text-muted-foreground mb-4">
-                Create or access your business dashboard to manage payment collections.
+                Access your insight dashboard. (Note: In this view, pools are generated automatically when all members have verified.)
               </p>
               
               <div className="flex flex-col md:flex-row gap-3">
