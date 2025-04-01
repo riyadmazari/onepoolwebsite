@@ -3,14 +3,12 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { FadeIn } from "../components/ui/animations";
 import { useToast } from "../hooks/use-toast";
-import { BusinessDashboard as DashboardUI } from "../components/ui/BusinessDashboard";
-import { getBusiness, getBusinessStats, getBusinessPools } from "../lib/firebase";
+import { BusinessDashboard as Dashboard } from "../components/ui/BusinessDashboard";
+import { getBusiness } from "../lib/firebase";
 
 const BusinessDashboard = () => {
   const { businessId = "demo" } = useParams();
-  const [business, setBusiness] = useState<any>(null);
-  const [stats, setStats] = useState<any>(null);
-  const [pools, setPools] = useState<any[]>([]);
+  const [business, setBusiness] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -19,7 +17,7 @@ const BusinessDashboard = () => {
     const fetchBusiness = async () => {
       try {
         if (businessId === "demo") {
-          // For demo purposes, create a demo business (assumed connected)
+          // Load demo business data for testing
           setBusiness({
             id: "demo",
             name: "Demo Business",
@@ -28,39 +26,24 @@ const BusinessDashboard = () => {
             stripeAccountId: "acct_demo",
             createdAt: { toMillis: () => Date.now() }
           });
-        } else {
-          const businessData = await getBusiness(businessId);
-          if (!businessData) {
-            toast({
-              title: "Business not found",
-              description: "The requested business could not be found",
-              variant: "destructive"
-            });
-            navigate("/");
-            return;
-          }
-          // If not connected to Stripe, force connection
-          if (!businessData.stripeConnected) {
-            toast({
-              title: "Stripe not connected",
-              description: "Please connect your Stripe account to access your dashboard",
-              variant: "destructive"
-            });
-            navigate("/connect-stripe", { state: { businessId: businessData.id } });
-            return;
-          }
-          setBusiness(businessData);
+          setIsLoading(false);
+          return;
         }
         
-        // Fetch dashboard data once business is available
-        const [businessPools, businessStats] = await Promise.all([
-          getBusinessPools(businessId),
-          getBusinessStats(businessId)
-        ]);
-        setPools(businessPools);
-        setStats(businessStats);
+        const businessData = await getBusiness(businessId);
+        if (!businessData) {
+          toast({
+            title: "Business not found",
+            description: "The requested business could not be found",
+            variant: "destructive"
+          });
+          navigate("/");
+          return;
+        }
+        
+        setBusiness(businessData);
       } catch (error) {
-        console.error("Error fetching business data:", error);
+        console.error("Error fetching business:", error);
         toast({
           title: "Error",
           description: "Failed to load business data",
@@ -73,7 +56,7 @@ const BusinessDashboard = () => {
     
     fetchBusiness();
   }, [businessId, navigate, toast]);
-  
+
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -92,20 +75,7 @@ const BusinessDashboard = () => {
       
       <main className="container max-w-7xl mx-auto px-4 py-8">
         <FadeIn>
-          {/* Render the dashboard UI and pass down business, stats and pools */}
-          {business && (
-            <DashboardUI 
-              business={business} 
-              stats={stats} 
-              pools={pools} 
-              refreshData={async () => {
-                const updatedPools = await getBusinessPools(business.id);
-                const updatedStats = await getBusinessStats(business.id);
-                setPools(updatedPools);
-                setStats(updatedStats);
-              }}
-            />
-          )}
+          {business && <Dashboard business={business} />}
         </FadeIn>
       </main>
       

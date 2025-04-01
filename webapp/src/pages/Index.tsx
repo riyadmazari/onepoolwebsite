@@ -1,16 +1,15 @@
-
-import React, { useState, useEffect } from "react";
+// webapp/src/pages/Index.tsx
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "../hooks/use-toast";
 import { FadeIn } from "../components/ui/animations";
-import { Copy, ArrowRight, Euro, Building2 } from "lucide-react";
+import { Copy, ArrowRight, Building2 } from "lucide-react";
 import { createPool, createBusiness } from "../lib/firebase";
 
 const Index = () => {
   const [amount, setAmount] = useState("");
   const [isCreating, setIsCreating] = useState(false);
   const [testLink, setTestLink] = useState("");
-  const [showBusinessDemo, setShowBusinessDemo] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
   
